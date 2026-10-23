@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+        <meta content="SkillForge personalized learning and skill development ecosystem." name="description"/>
+        <title>
+            Skills | SkillForge
+        </title>
+        <link href="assets/skillforge-logo.svg" rel="icon" type="image/svg+xml"/>
+        <link href="css/style.css" rel="stylesheet"/>
+        <script src="js/data.js">
+        </script>
+        <script src="js/api.js">
+        </script>
+        <script src="js/common.js">
+        </script>
+    </head>
+    <body class="app-page" data-page="skills" data-protected="true" data-title="Skills">
+        <aside class="sidebar" id="appSidebar">
+        </aside>
+        <main class="app-main">
+            <header class="app-topbar" id="appTopbar">
+            </header>
+            <div class="app-content">
+                <div class="skills-hero">
+                    <section class="card skill-overview">
+                        <span class="eyebrow" style="color:#9e96ff">
+                            SkillForge skill index
+                        </span>
+                        <h1>
+                            Your learning is becoming capability.
+                        </h1>
+                        <p>
+                            Skill percentages are calculated from completed modules across the courses connected to each skill.
+                        </p>
+                        <div class="skill-score">
+                            <span id="skillScore">
+                                0
+                            </span>
+                            <small>
+                                /100 overall
+                            </small>
+                        </div>
+                    </section>
+                    <section class="panel radar-placeholder">
+                        <div class="orbit">
+                            <span>
+                            </span>
+                            <span>
+                            </span>
+                            <span>
+                            </span>
+                            <span>
+                            </span>
+                        </div>
+                        <div style="text-align:center">
+                            <strong>
+                                <span id="skillCount">
+                                    0
+                                </span>
+                                active skills
+                            </strong>
+                            <div class="muted">
+                                A simple visual map for the frontend demo
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="skill-cards" id="skillCards">
+                </div>
+                <section class="card next-skill" id="nextSkill">
+                </section>
+            </div>
+        </main>
+        <script src="js/skills.js">
+        </script>
+    </body>
+</html>

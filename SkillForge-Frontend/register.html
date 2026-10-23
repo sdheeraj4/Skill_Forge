@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+        <meta content="SkillForge personalized learning and skill development ecosystem." name="description"/>
+        <title>
+            Register | SkillForge
+        </title>
+        <link href="assets/skillforge-logo.svg" rel="icon" type="image/svg+xml"/>
+        <link href="css/style.css" rel="stylesheet"/>
+        <script src="js/data.js">
+        </script>
+        <script src="js/api.js">
+        </script>
+        <script src="js/common.js">
+        </script>
+    </head>
+    <body>
+        <main class="auth-layout">
+            <section class="auth-showcase">
+                <a class="brand" href="index.html">
+                    <img alt="" src="assets/skillforge-logo.svg"/>
+                    <span>
+                        SkillForge
+                    </span>
+                </a>
+                <div class="auth-message">
+                    <span class="eyebrow" style="color:#9e96ff">
+                        START YOUR PATH
+                    </span>
+                    <h1>
+                        Build a profile around what you want to become.
+                    </h1>
+                    <p>
+                        SkillForge uses your interests, current level and learning goal to organize a more relevant course journey.
+                    </p>
+                </div>
+                <div class="auth-mini-card">
+                    <strong>
+                        What comes next?
+                    </strong>
+                    <p style="margin:6px 0 0;color:#c9cbea">
+                        After registration, choose your interests and goal. Your dashboard will use them for recommendations.
+                    </p>
+                </div>
+            </section>
+            <section class="auth-panel">
+                <div class="auth-card">
+                    <a class="brand" href="index.html" style="margin-bottom:28px">
+                        <img alt="" src="assets/skillforge-logo.svg"/>
+                        <span>
+                            SkillForge
+                        </span>
+                    </a>
+                    <span class="eyebrow">
+                        Create account
+                    </span>
+                    <h2>
+                        Start learning.
+                    </h2>
+                    <p>
+                        Create your learner account. Your profile and learning progress are stored through the SkillForge Node.js backend.
+                    </p>
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">
+                                Full name
+                            </label>
+                            <input class="form-control" id="name" maxlength="60" name="name" placeholder="Your full name" required=""/>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="regEmail">
+                                Email
+                            </label>
+                            <input class="form-control" id="regEmail" name="email" placeholder="you@example.com" required="" type="email"/>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="regPassword">
+                                    Password
+                                </label>
+                                <input class="form-control" id="regPassword" minlength="8" name="password" required="" type="password"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="confirm">
+                                    Confirm
+                                </label>
+                                <input class="form-control" id="confirm" minlength="8" name="confirm" required="" type="password"/>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" style="width:100%" type="submit">
+                            Create account →
+                        </button>
+                    </form>
+                    <div class="auth-footer">
+                        Already have an account?
+                        <a href="login.html">
+                            Login
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script src="js/auth.js">
+        </script>
+    </body>
+</html>

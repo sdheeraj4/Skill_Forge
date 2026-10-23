@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+        <meta content="SkillForge personalized learning and skill development ecosystem." name="description"/>
+        <title>
+            Dashboard | SkillForge
+        </title>
+        <link href="assets/skillforge-logo.svg" rel="icon" type="image/svg+xml"/>
+        <link href="css/style.css" rel="stylesheet"/>
+        <script src="js/data.js">
+        </script>
+        <script src="js/api.js">
+        </script>
+        <script src="js/common.js">
+        </script>
+    </head>
+    <body class="app-page" data-page="dashboard" data-protected="true" data-title="Dashboard">
+        <aside class="sidebar" id="appSidebar">
+        </aside>
+        <main class="app-main">
+            <header class="app-topbar" id="appTopbar">
+            </header>
+            <div class="app-content">
+                <div class="welcome-row">
+                    <div>
+                        <span class="eyebrow">
+                            Personal learning space
+                        </span>
+                        <h1>
+                            Good to see you,
+                            <span id="welcomeName">
+                                Learner
+                            </span>
+                            .
+                        </h1>
+                        <p>
+                            Your next step is based on what you are learning and the skills you are building.
+                        </p>
+                    </div>
+                    <a class="btn btn-primary" href="courses.html">
+                        Explore courses →
+                    </a>
+                </div>
+                <section class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>
+                                Active courses
+                            </span>
+                            <span class="stat-icon">
+                                01
+                            </span>
+                        </div>
+                        <strong id="statCourses">
+                            0
+                        </strong>
+                        <small>
+                            Learning paths started
+                        </small>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>
+                                Modules complete
+                            </span>
+                            <span class="stat-icon">
+                                02
+                            </span>
+                        </div>
+                        <strong id="statModules">
+                            0
+                        </strong>
+                        <small>
+                            Across all courses
+                        </small>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>
+                                Quiz average
+                            </span>
+                            <span class="stat-icon">
+                                03
+                            </span>
+                        </div>
+                        <strong id="statQuiz">
+                            0%
+                        </strong>
+                        <small>
+                            Latest attempts
+                        </small>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>
+                                Skills growing
+                            </span>
+                            <span class="stat-icon">
+                                04
+                            </span>
+                        </div>
+                        <strong id="statSkills">
+                            0
+                        </strong>
+                        <small>
+                            From completed learning
+                        </small>
+                    </div>
+                </section>
+                <div class="dashboard-grid">
+                    <div style="display:grid;gap:18px">
+                        <section class="panel">
+                            <div class="panel-head">
+                                <h2>
+                                    Continue learning
+                                </h2>
+                                <a href="my-learning.html">
+                                    My Learning
+                                </a>
+                            </div>
+                            <div id="continueLearning">
+                            </div>
+                        </section>
+                        <section class="panel">
+                            <div class="panel-head">
+                                <h2>
+                                    Recommended for you
+                                </h2>
+                                <a href="courses.html">
+                                    See all
+                                </a>
+                            </div>
+                            <div class="recommend-grid" id="recommendations">
+                            </div>
+                        </section>
+                    </div>
+                    <div style="display:grid;gap:18px">
+                        <section class="panel">
+                            <div class="panel-head">
+                                <h2>
+                                    Your skill growth
+                                </h2>
+                                <a href="skills.html">
+                                    Skill map
+                                </a>
+                            </div>
+                            <div class="skill-list" id="dashboardSkills">
+                            </div>
+                        </section>
+                        <section class="panel">
+                            <div class="panel-head">
+                                <h2>
+                                    Recent activity
+                                </h2>
+                                <a href="progress.html">
+                                    Progress
+                                </a>
+                            </div>
+                            <div class="activity-list" id="recentActivity">
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="js/dashboard.js">
+        </script>
+    </body>
+</html>

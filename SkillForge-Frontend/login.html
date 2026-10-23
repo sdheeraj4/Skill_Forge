@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+        <meta content="SkillForge personalized learning and skill development ecosystem." name="description"/>
+        <title>
+            Login | SkillForge
+        </title>
+        <link href="assets/skillforge-logo.svg" rel="icon" type="image/svg+xml"/>
+        <link href="css/style.css" rel="stylesheet"/>
+        <script src="js/data.js">
+        </script>
+        <script src="js/api.js">
+        </script>
+        <script src="js/common.js">
+        </script>
+    </head>
+    <body>
+        <main class="auth-layout">
+            <section class="auth-showcase">
+                <a class="brand" href="index.html">
+                    <img alt="" src="assets/skillforge-logo.svg"/>
+                    <span>
+                        SkillForge
+                    </span>
+                </a>
+                <div class="auth-message">
+                    <span class="eyebrow" style="color:#9e96ff">
+                        WELCOME BACK
+                    </span>
+                    <h1>
+                        Continue where your learning left off.
+                    </h1>
+                    <p>
+                        Your courses, quiz results, skill growth and next recommendations stay organized in one learner workspace.
+                    </p>
+                </div>
+                <div class="auth-mini-card">
+                    <strong>
+                        Demo ready
+                    </strong>
+                    <p style="margin:6px 0 0;color:#c9cbea">
+                        Use the included demo account to explore the complete frontend immediately.
+                    </p>
+                </div>
+            </section>
+            <section class="auth-panel">
+                <div class="auth-card">
+                    <a class="brand" href="index.html" style="margin-bottom:28px">
+                        <img alt="" src="assets/skillforge-logo.svg"/>
+                        <span>
+                            SkillForge
+                        </span>
+                    </a>
+                    <span class="eyebrow">
+                        Learner login
+                    </span>
+                    <h2>
+                        Welcome back.
+                    </h2>
+                    <p>
+                        Sign in to continue your learning path.
+                    </p>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label class="form-label" for="email">
+                                Email
+                            </label>
+                            <input autocomplete="email" class="form-control" id="email" name="email" placeholder="you@example.com" required="" type="email"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="password">
+                                Password
+                            </label>
+                            <input autocomplete="current-password" class="form-control" id="password" name="password" placeholder="Enter your password" required="" type="password"/>
+                        </div>
+                        <button class="btn btn-primary" style="width:100%" type="submit">
+                            Login →
+                        </button>
+                    </form>
+                    <div class="demo-box">
+                        <b>
+                            Full-stack mode
+                        </b>
+                        <br/>
+                        Sign in with an account registered in the SkillForge MySQL database.
+                    </div>
+                    <div class="auth-footer">
+                        New to SkillForge?
+                        <a href="register.html">
+                            Create an account
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script src="js/auth.js">
+        </script>
+    </body>
+</html>

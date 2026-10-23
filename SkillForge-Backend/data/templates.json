@@ -1,0 +1,2873 @@
+[
+  {
+    "id": "java-fundamentals",
+    "title": "Java Programming Fundamentals",
+    "modules": [
+      {
+        "id": "java-basics",
+        "title": "Java Basics",
+        "duration": "55 min",
+        "summary": "Understand variables, operators, conditions and loops.",
+        "notes": [
+          "Java is statically typed, so variables have declared types such as int, double and String.",
+          "Control statements include if/else, switch, for, while and do-while.",
+          "The main method is the common starting point of a standalone Java program."
+        ],
+        "video": {
+          "title": "Java Full Course for Beginners",
+          "url": "https://www.youtube.com/results?search_query=Java+full+course+beginners+freeCodeCamp"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Program structure",
+              "text": "A Java application is built from classes. A standalone program normally begins in public static void main(String[] args). Source files are compiled by javac into JVM bytecode, then the java launcher executes that bytecode through the Java Virtual Machine."
+            },
+            {
+              "title": "Types and variables",
+              "text": "Java is statically typed. Primitive types include int, double, boolean and char; reference types include String, arrays and user-defined classes. The compiler checks assignments and method calls against these declared types before the program runs."
+            },
+            {
+              "title": "Operators and decisions",
+              "text": "Arithmetic and comparison operators build expressions, while &&, || and ! combine boolean conditions. if/else handles general decisions and switch is useful for exact alternatives. Strings should be compared by content with equals(), not with ==."
+            },
+            {
+              "title": "Loops",
+              "text": "for loops are useful when the iteration pattern is known, while and do-while repeat based on a condition, and enhanced for loops traverse arrays or collections directly. Casting may be required when an arithmetic expression would otherwise use integer division."
+            }
+          ],
+          "codeExample": {
+            "title": "Simple Java program",
+            "language": "java",
+            "code": "public class Main {\n    public static void main(String[] args) {\n        int[] scores = {80, 90, 70, 100};\n        int total = 0;\n\n        for (int score : scores) {\n            total += score;\n        }\n\n        double average = (double) total / scores.length;\n        System.out.println(\"Average = \" + average);\n    }\n}",
+            "explanation": [
+              "The enhanced for loop reads every array value.",
+              "Casting total to double prevents integer division.",
+              "The compiler checks the declared types before execution."
+            ],
+            "output": "Average = 85.0"
+          },
+          "diagram": {
+            "title": "Java execution path",
+            "nodes": [
+              "Main.java",
+              "javac compiler",
+              ".class bytecode",
+              "JVM",
+              "Program output"
+            ],
+            "caption": "Java separates source compilation from bytecode execution, which is why the same bytecode can run on different systems with a compatible JVM."
+          },
+          "applications": [
+            "Console utilities, backend services and object-oriented applications all begin with the same type and control-flow fundamentals."
+          ],
+          "commonMistakes": [
+            "Comparing String values with ==.",
+            "Performing integer division accidentally.",
+            "Using an uninitialized local variable.",
+            "Creating non-terminating loops."
+          ],
+          "bestPractices": [
+            "Use meaningful types and names.",
+            "Keep braces consistent.",
+            "Use equals() for String content.",
+            "Let compiler errors guide corrections early."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "java-oop",
+        "title": "Classes & OOP",
+        "duration": "65 min",
+        "summary": "Model data and behavior with objects and classes.",
+        "notes": [
+          "A class defines fields and methods, while an object is an instance of that class.",
+          "Encapsulation hides internal data behind controlled methods.",
+          "Inheritance and polymorphism support reusable and flexible object-oriented designs."
+        ],
+        "video": {
+          "title": "Java OOP Tutorial",
+          "url": "https://www.youtube.com/results?search_query=Java+OOP+classes+inheritance+polymorphism+tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Classes and objects",
+              "text": "A class is a blueprint containing fields and methods; an object is a particular instance created from that blueprint. Constructors initialize a new instance and should establish a valid starting state."
+            },
+            {
+              "title": "Encapsulation",
+              "text": "Encapsulation keeps fields private and exposes controlled behaviour through methods. Instead of letting any code assign arbitrary values, the class can validate changes and protect its own invariants."
+            },
+            {
+              "title": "Inheritance and composition",
+              "text": "Inheritance models a true 'is-a' specialization, while composition models 'has-a' collaboration. Composition is often more flexible because one object can delegate work to another without creating a deep type hierarchy."
+            },
+            {
+              "title": "Polymorphism and abstraction",
+              "text": "Interfaces and parent types let different concrete objects be used through one contract. When an overridden method is invoked, Java dispatches to the implementation belonging to the actual runtime object."
+            }
+          ],
+          "codeExample": {
+            "title": "Encapsulated learner",
+            "language": "java",
+            "code": "class Learner {\n    private String name;\n    private int completedCourses;\n\n    Learner(String name) {\n        this.name = name;\n    }\n\n    void completeCourse() {\n        completedCourses++;\n    }\n\n    int getCompletedCourses() {\n        return completedCourses;\n    }\n}",
+            "explanation": [
+              "The fields are private.",
+              "Callers can change state only through meaningful methods.",
+              "The constructor guarantees every learner starts with a name."
+            ]
+          },
+          "diagram": {
+            "title": "OOP model",
+            "nodes": [
+              "Class blueprint",
+              "Object instance",
+              "Private state",
+              "Public behaviour",
+              "Interface / polymorphism"
+            ],
+            "caption": "Objects combine state and behaviour, while abstraction controls how other parts of the program interact with them."
+          },
+          "applications": [
+            "Learners, courses, reports and notification strategies can all be modeled as objects with clear responsibilities."
+          ],
+          "commonMistakes": [
+            "Making all fields public.",
+            "Using inheritance only for code reuse.",
+            "Creating deep class hierarchies.",
+            "Forgetting @Override on intended overrides."
+          ],
+          "bestPractices": [
+            "Protect state behind methods.",
+            "Prefer composition unless inheritance expresses a real relationship.",
+            "Use small interfaces.",
+            "Keep classes focused."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "java-collections",
+        "title": "Collections & Exceptions",
+        "duration": "60 min",
+        "summary": "Work with collections and handle runtime problems safely.",
+        "notes": [
+          "ArrayList stores a resizable ordered collection of elements.",
+          "HashMap stores key-value pairs for fast lookup by key.",
+          "try/catch handles exceptions so a program can recover or provide a meaningful error."
+        ],
+        "video": {
+          "title": "Java Collections and Exception Handling",
+          "url": "https://www.youtube.com/results?search_query=Java+collections+exception+handling+tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "List, Set and Map",
+              "text": "List preserves order and allows duplicates, Set represents unique values, and Map associates keys with values. Common implementations include ArrayList, HashSet and HashMap. Code often declares variables using the interface type so the implementation can change later."
+            },
+            {
+              "title": "Generics and iteration",
+              "text": "Generic type parameters such as List<String> provide compile-time type safety. Collections can be traversed with enhanced for loops, iterators or streams. When removing during iteration, use safe mechanisms such as Iterator.remove or removeIf."
+            },
+            {
+              "title": "Exceptions",
+              "text": "Exceptions represent abnormal conditions. try contains work that may fail, catch handles a matching exception, and finally is used for cleanup logic that must run regardless of success or failure. Catch the most specific exception you can actually handle."
+            },
+            {
+              "title": "Resource safety",
+              "text": "Files, streams and JDBC objects should be closed. try-with-resources automatically closes AutoCloseable resources even when an exception occurs, which is safer than relying on manual cleanup."
+            }
+          ],
+          "codeExample": {
+            "title": "Collections and validation",
+            "language": "java",
+            "code": "List<Integer> scores = new ArrayList<>(List.of(40, 82, 55, 91));\nscores.removeIf(score -> score < 60);\n\nMap<String, Integer> courseScores = new HashMap<>();\ncourseScores.put(\"Java\", 92);\n\nSystem.out.println(scores);\nSystem.out.println(courseScores.get(\"Java\"));",
+            "explanation": [
+              "removeIf safely filters the mutable list.",
+              "The map provides key-based lookup.",
+              "Generics ensure only the expected value types are stored."
+            ],
+            "output": "[82, 91]\n92"
+          },
+          "diagram": {
+            "title": "Exception path",
+            "nodes": [
+              "Normal operation",
+              "Exception thrown",
+              "Matching catch",
+              "Cleanup",
+              "Continue / report"
+            ],
+            "caption": "Exception handling keeps recovery logic separate from the normal path and guarantees that necessary cleanup can still happen."
+          },
+          "applications": [
+            "Collections store learners, skills and scores; exception handling protects file, input and database operations."
+          ],
+          "commonMistakes": [
+            "Using raw collections without generic types.",
+            "Catching Exception and ignoring it.",
+            "Modifying a collection unsafely while iterating.",
+            "Forgetting to close resources."
+          ],
+          "bestPractices": [
+            "Choose collections by required behaviour.",
+            "Catch specific exceptions.",
+            "Use try-with-resources.",
+            "Preserve useful error context."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "java-fundamentals-m4",
+        "title": "Files and Resource Handling",
+        "duration": "40 min",
+        "summary": "Practice files and resource handling through a worked example and a short verification exercise.",
+        "notes": [
+          "Path describes a filesystem location and Files provides convenient text reading and writing methods.",
+          "Use try-with-resources for readers or streams so they close even when an exception occurs.",
+          "Handle IOException with a meaningful recovery or message instead of ignoring failed writes."
+        ],
+        "video": {
+          "title": "Files and Resource Handling tutorial",
+          "url": "https://www.youtube.com/results?search_query=Java%20Programming%20Fundamentals%20Files%20and%20Resource%20Handling%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "Path describes a filesystem location and Files provides convenient text reading and writing methods."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "Use try-with-resources for readers or streams so they close even when an exception occurs."
+            },
+            {
+              "title": "Checking the result",
+              "text": "Handle IOException with a meaningful recovery or message instead of ignoring failed writes."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "Path path = Path.of(\"scores.txt\");\nFiles.writeString(path, \"85\");\nString score = Files.readString(path);\nSystem.out.println(score);\n// Enclose in a method that handles IOException; expected output: 85.",
+            "explanation": [
+              "Path describes a filesystem location and Files provides convenient text reading and writing methods.",
+              "Handle IOException with a meaningful recovery or message instead of ignoring failed writes."
+            ]
+          },
+          "applications": [
+            "Apply files and resource handling when building and checking a small Java Programming Fundamentals lab exercise."
+          ],
+          "commonMistakes": [
+            "Leaving a reader open can hold resources and prevent other file operations."
+          ],
+          "bestPractices": [
+            "Handle IOException with a meaningful recovery or message instead of ignoring failed writes.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "Path describes a filesystem location and Files provides convenient text reading and writing methods.",
+            "Use try-with-resources for readers or streams so they close even when an exception occurs.",
+            "Handle IOException with a meaningful recovery or message instead of ignoring failed writes."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "java-fundamentals-m5",
+        "title": "Testing a Small Java Application",
+        "duration": "40 min",
+        "summary": "Practice testing a small java application through a worked example and a short verification exercise.",
+        "notes": [
+          "Separate input/output from calculation so the calculation can be tested without a console.",
+          "Test boundaries such as the exact pass mark as well as values immediately below it.",
+          "Validate input before changing an object so invalid values cannot corrupt its state."
+        ],
+        "video": {
+          "title": "Testing a Small Java Application tutorial",
+          "url": "https://www.youtube.com/results?search_query=Java%20Programming%20Fundamentals%20Testing%20a%20Small%20Java%20Application%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "Separate input/output from calculation so the calculation can be tested without a console."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "Test boundaries such as the exact pass mark as well as values immediately below it."
+            },
+            {
+              "title": "Checking the result",
+              "text": "Validate input before changing an object so invalid values cannot corrupt its state."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "static boolean passed(int score) {\n    if (score < 0 || score > 100) throw new IllegalArgumentException(\"score\");\n    return score >= 60;\n}\n// Check passed(59) is false, passed(60) is true, and passed(101) throws.",
+            "explanation": [
+              "Separate input/output from calculation so the calculation can be tested without a console.",
+              "Validate input before changing an object so invalid values cannot corrupt its state."
+            ]
+          },
+          "applications": [
+            "Apply testing a small java application when building and checking a small Java Programming Fundamentals lab exercise."
+          ],
+          "commonMistakes": [
+            "Catching every exception and returning success conceals invalid data."
+          ],
+          "bestPractices": [
+            "Validate input before changing an object so invalid values cannot corrupt its state.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "Separate input/output from calculation so the calculation can be tested without a console.",
+            "Test boundaries such as the exact pass mark as well as values immediately below it.",
+            "Validate input before changing an object so invalid values cannot corrupt its state."
+          ],
+          "extra": []
+        }
+      }
+    ],
+    "quiz": [
+      {
+        "id": "java-q1",
+        "moduleId": "java-basics",
+        "difficulty": "easy",
+        "topic": "Types",
+        "question": "Which is a valid Java integer type?",
+        "options": [
+          "int",
+          "number",
+          "integer()",
+          "numeric"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "java-q2",
+        "moduleId": "java-basics",
+        "difficulty": "easy",
+        "topic": "Entry point",
+        "question": "Which method is normally the entry point of a Java application?",
+        "options": [
+          "main",
+          "start",
+          "runApp",
+          "index"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "java-q3",
+        "moduleId": "java-oop",
+        "difficulty": "easy",
+        "topic": "Objects",
+        "question": "An object is best described as:",
+        "options": [
+          "An instance of a class",
+          "A SQL query",
+          "A CSS selector",
+          "A package manager"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "java-q4",
+        "moduleId": "java-oop",
+        "difficulty": "medium",
+        "topic": "Encapsulation",
+        "question": "What is encapsulation mainly used for?",
+        "options": [
+          "Controlling access to object state",
+          "Creating HTML",
+          "Starting MySQL",
+          "Styling forms"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "java-q5",
+        "moduleId": "java-oop",
+        "difficulty": "medium",
+        "topic": "Inheritance",
+        "question": "Which keyword allows one class to inherit from another class?",
+        "options": [
+          "extends",
+          "inherits",
+          "implementsOnly",
+          "parent"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "java-q6",
+        "moduleId": "java-collections",
+        "difficulty": "medium",
+        "topic": "Collections",
+        "question": "Which collection is a resizable ordered list?",
+        "options": [
+          "ArrayList",
+          "HashMap",
+          "Thread",
+          "Scanner only"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "java-q7",
+        "moduleId": "java-fundamentals-m4",
+        "difficulty": "medium",
+        "topic": "Files and Resource Handling",
+        "question": "Which Java construct closes an opened reader even if reading fails?",
+        "options": [
+          "An empty catch block",
+          "A static field",
+          "Try-with-resources",
+          "An infinite loop"
+        ],
+        "correct": 2,
+        "explanation": "Path describes a filesystem location and Files provides convenient text reading and writing methods. Use try-with-resources for readers or streams so they close even when an exception occurs. Handle IOException with a meaningful recovery or message instead of ignoring failed writes."
+      },
+      {
+        "id": "java-q8",
+        "moduleId": "java-oop",
+        "difficulty": "hard",
+        "topic": "Polymorphism",
+        "question": "A parent reference points to a child object and an overridden method is called. Which implementation normally runs?",
+        "options": [
+          "The child implementation",
+          "Always the parent implementation",
+          "No implementation",
+          "The compiler deletes the method"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "java-q9",
+        "moduleId": "java-collections",
+        "difficulty": "hard",
+        "topic": "Data structures",
+        "question": "You need to look up a student by unique roll number quickly. Which structure is generally suitable?",
+        "options": [
+          "HashMap",
+          "ArrayList only by sequential search",
+          "StringBuilder",
+          "Exception"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "java-q10",
+        "moduleId": "java-fundamentals-m5",
+        "difficulty": "hard",
+        "topic": "Testing a Small Java Application",
+        "question": "A pass rule is score >= 60. Which pair best checks its boundary?",
+        "options": [
+          "10 and 20",
+          "80 and 90",
+          "0 and 1",
+          "59 and 60"
+        ],
+        "correct": 3,
+        "explanation": "Separate input/output from calculation so the calculation can be tested without a console. Test boundaries such as the exact pass mark as well as values immediately below it. Validate input before changing an object so invalid values cannot corrupt its state."
+      }
+    ]
+  },
+  {
+    "id": "nodejs-essentials",
+    "title": "Node.js Essentials",
+    "modules": [
+      {
+        "id": "node-runtime",
+        "title": "Node.js Runtime & Modules",
+        "duration": "55 min",
+        "summary": "Understand Node.js, CommonJS/ES modules and npm.",
+        "notes": [
+          "Node.js runs JavaScript outside the browser using the V8 engine.",
+          "Modules split applications into reusable files and npm manages project dependencies.",
+          "package.json describes scripts, metadata and dependencies for a Node.js project."
+        ],
+        "video": {
+          "title": "Node.js Full Course for Beginners",
+          "url": "https://www.youtube.com/results?search_query=freeCodeCamp+Node.js+full+course+beginners"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "What Node.js provides",
+              "text": "Node.js uses the V8 JavaScript engine and adds runtime APIs for files, networking, processes and the operating system. That allows JavaScript to build servers and command-line tools outside the browser."
+            },
+            {
+              "title": "The process object",
+              "text": "process exposes environment variables, command-line arguments, the current working directory and exit information. Server configuration such as ports and database credentials should come from the environment rather than being hard-coded into source files."
+            },
+            {
+              "title": "Modules",
+              "text": "CommonJS uses require() and module.exports, while ES modules use import/export when the project is configured for them. Modules split a program into focused files with explicit public interfaces."
+            },
+            {
+              "title": "npm and dependencies",
+              "text": "package.json records scripts, metadata and dependencies. package-lock.json pins the exact dependency tree for repeatable installs. Packages should be added deliberately because every dependency increases maintenance and security surface."
+            }
+          ],
+          "codeExample": {
+            "title": "CommonJS module",
+            "language": "javascript",
+            "code": "// learningEngine.js\nfunction performanceLabel(score) {\n    return score >= 90 ? \"Excellent\" : \"Keep learning\";\n}\n\nmodule.exports = { performanceLabel };\n\n// app.js\nconst { performanceLabel } = require(\"./learningEngine\");\nconsole.log(performanceLabel(95));",
+            "explanation": [
+              "One file exports a small public API.",
+              "Another file imports only the function it needs.",
+              "Node caches loaded CommonJS modules after resolution."
+            ],
+            "output": "Excellent"
+          },
+          "diagram": {
+            "title": "Node runtime",
+            "nodes": [
+              "JavaScript source",
+              "V8 engine",
+              "Node runtime APIs",
+              "Filesystem / network / OS",
+              "Application output"
+            ],
+            "caption": "Node combines V8 with server-side APIs that are not normally available to browser JavaScript."
+          },
+          "applications": [
+            "Express servers, command-line utilities, automation scripts and build tools all run on Node.js."
+          ],
+          "commonMistakes": [
+            "Hard-coding secrets.",
+            "Mixing module systems without understanding configuration.",
+            "Installing packages for trivial built-in functionality.",
+            "Ignoring lockfiles."
+          ],
+          "bestPractices": [
+            "Use environment variables.",
+            "Keep modules focused.",
+            "Prefer built-ins when appropriate.",
+            "Commit the lockfile for applications."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "node-async",
+        "title": "Async JavaScript & Event Loop",
+        "duration": "65 min",
+        "summary": "Use promises, async/await and non-blocking I/O.",
+        "notes": [
+          "The event loop coordinates asynchronous callbacks so the main thread can remain responsive.",
+          "Promises represent future success or failure and async/await provides readable promise syntax.",
+          "Long CPU-heavy synchronous work can block other requests."
+        ],
+        "video": {
+          "title": "Node.js Event Loop Explained",
+          "url": "https://www.youtube.com/results?search_query=Node.js+event+loop+async+await+tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Non-blocking I/O",
+              "text": "Node.js can start many I/O operations without waiting synchronously for each one to finish. While the operating system or runtime waits on network/file operations, the JavaScript thread can continue handling other ready work."
+            },
+            {
+              "title": "Promises",
+              "text": "A Promise represents a future result and can be pending, fulfilled or rejected. then/catch can consume that result; Promise.all is useful when independent operations can safely run concurrently."
+            },
+            {
+              "title": "async/await",
+              "text": "async functions return Promises, and await pauses only the current async function until a Promise settles. It does not block the whole Node process. try/catch provides natural error handling around awaited operations."
+            },
+            {
+              "title": "The event loop",
+              "text": "The event loop schedules ready JavaScript callbacks and promise continuations. Asynchronous I/O improves concurrency, but CPU-heavy synchronous work still blocks the event loop because JavaScript callbacks need the main thread."
+            }
+          ],
+          "codeExample": {
+            "title": "Concurrent async operations",
+            "language": "javascript",
+            "code": "async function loadPage() {\n    const [course, profile] = await Promise.all([\n        loadCourse(),\n        loadProfile()\n    ]);\n\n    return { course, profile };\n}\n\nloadPage()\n    .then(console.log)\n    .catch(console.error);",
+            "explanation": [
+              "Both independent operations start before either result is awaited.",
+              "Promise.all fails if one member rejects.",
+              "The caller still receives one Promise from the async function."
+            ]
+          },
+          "diagram": {
+            "title": "Simplified event loop",
+            "nodes": [
+              "JavaScript starts I/O",
+              "Node/OS performs I/O",
+              "Result becomes ready",
+              "Event loop schedules callback",
+              "JavaScript handles result"
+            ],
+            "caption": "Asynchronous I/O frees the JavaScript thread while waiting, but the continuation still runs only when the event loop can schedule it."
+          },
+          "applications": [
+            "Database queries, file operations and HTTP requests should use asynchronous APIs in a web server."
+          ],
+          "commonMistakes": [
+            "Assuming async/await creates a thread per request.",
+            "Forgetting rejected Promise handling.",
+            "Awaiting independent operations serially.",
+            "Running CPU-heavy loops in request handlers."
+          ],
+          "bestPractices": [
+            "Use async/await for readable flows.",
+            "Run independent tasks concurrently where safe.",
+            "Handle errors at clear boundaries.",
+            "Keep synchronous tasks short."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "node-http",
+        "title": "HTTP Servers",
+        "duration": "55 min",
+        "summary": "Handle requests and responses using Node.js HTTP concepts.",
+        "notes": [
+          "HTTP requests contain a method, URL, headers and sometimes a body.",
+          "HTTP responses contain a status code, headers and optional response body.",
+          "Frameworks such as Express reduce routing and middleware boilerplate."
+        ],
+        "video": {
+          "title": "Node.js HTTP Server Tutorial",
+          "url": "https://www.youtube.com/results?search_query=Node.js+http+server+tutorial+beginners"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "HTTP request/response",
+              "text": "A client sends a method, URL, headers and optionally a body. The server returns a status code, headers and optionally a response body. Node's http module exposes these protocol details directly."
+            },
+            {
+              "title": "Methods and status codes",
+              "text": "GET retrieves, POST commonly creates or triggers processing, PUT/PATCH update and DELETE removes. Status codes such as 200, 201, 400, 401, 404 and 500 communicate the outcome independently of response text."
+            },
+            {
+              "title": "Bodies and JSON",
+              "text": "Incoming request bodies arrive as chunks at the low level. A server collects them and parses JSON after the stream ends. Frameworks such as Express automate this repetitive parsing through middleware."
+            },
+            {
+              "title": "Headers and CORS",
+              "text": "Content-Type describes the representation. Cookies carry session identifiers. When frontend and backend origins differ, browser CORS rules determine whether JavaScript can access the response; credentialed requests require explicit allowed origins."
+            }
+          ],
+          "codeExample": {
+            "title": "Minimal Node HTTP server",
+            "language": "javascript",
+            "code": "const http = require(\"node:http\");\n\nconst server = http.createServer((req, res) => {\n    if (req.method === \"GET\" && req.url === \"/api/health\") {\n        res.writeHead(200, {\n            \"Content-Type\": \"application/json; charset=utf-8\"\n        });\n        return res.end(JSON.stringify({ api: \"ok\" }));\n    }\n\n    res.writeHead(404, {\n        \"Content-Type\": \"application/json; charset=utf-8\"\n    });\n    res.end(JSON.stringify({ message: \"Not found\" }));\n});\n\nserver.listen(5000);",
+            "explanation": [
+              "The method and path form a very small route.",
+              "Every response includes an appropriate status and content type.",
+              "Unmatched requests receive a 404."
+            ]
+          },
+          "diagram": {
+            "title": "HTTP lifecycle",
+            "nodes": [
+              "Client request",
+              "Method + URL",
+              "Route/business logic",
+              "Status + headers",
+              "Response body"
+            ],
+            "caption": "Every REST API call follows this request/response lifecycle even when a framework hides the low-level details."
+          },
+          "applications": [
+            "Health checks and REST APIs are built on the same HTTP primitives."
+          ],
+          "commonMistakes": [
+            "Sending a response twice.",
+            "Using 200 for errors.",
+            "Trusting JSON without validation.",
+            "Using unsafe credentialed CORS settings."
+          ],
+          "bestPractices": [
+            "Return clear status codes.",
+            "Validate input.",
+            "Set accurate Content-Type headers.",
+            "Understand HTTP before relying on framework helpers."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "nodejs-essentials-m4",
+        "title": "Filesystem and Configuration",
+        "duration": "40 min",
+        "summary": "Practice filesystem and configuration through a worked example and a short verification exercise.",
+        "notes": [
+          "Use fs/promises for asynchronous file operations so disk waits do not block other work.",
+          "Read configuration from process.env and validate required values at startup.",
+          "Treat missing files and invalid configuration as expected errors with controlled messages."
+        ],
+        "video": {
+          "title": "Filesystem and Configuration tutorial",
+          "url": "https://www.youtube.com/results?search_query=Node.js%20Essentials%20Filesystem%20and%20Configuration%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "Use fs/promises for asynchronous file operations so disk waits do not block other work."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "Read configuration from process.env and validate required values at startup."
+            },
+            {
+              "title": "Checking the result",
+              "text": "Treat missing files and invalid configuration as expected errors with controlled messages."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "const fs = require(\"node:fs/promises\");\nasync function readSettings() {\n    const text = await fs.readFile(\"settings.json\", \"utf8\");\n    return JSON.parse(text);\n}\n// The caller catches missing-file and invalid-JSON errors.",
+            "explanation": [
+              "Use fs/promises for asynchronous file operations so disk waits do not block other work.",
+              "Treat missing files and invalid configuration as expected errors with controlled messages."
+            ]
+          },
+          "applications": [
+            "Apply filesystem and configuration when building and checking a small Node.js Essentials lab exercise."
+          ],
+          "commonMistakes": [
+            "Logging the whole environment can expose passwords and API keys."
+          ],
+          "bestPractices": [
+            "Treat missing files and invalid configuration as expected errors with controlled messages.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "Use fs/promises for asynchronous file operations so disk waits do not block other work.",
+            "Read configuration from process.env and validate required values at startup.",
+            "Treat missing files and invalid configuration as expected errors with controlled messages."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "nodejs-essentials-m5",
+        "title": "Testing and Error Boundaries",
+        "duration": "40 min",
+        "summary": "Practice testing and error boundaries through a worked example and a short verification exercise.",
+        "notes": [
+          "The built-in node:test runner executes tests without requiring a separate testing framework.",
+          "Inject external dependencies into small functions so tests can simulate failures without the network.",
+          "Catch failures at the request boundary and return controlled errors; do not leak stack traces or secrets."
+        ],
+        "video": {
+          "title": "Testing and Error Boundaries tutorial",
+          "url": "https://www.youtube.com/results?search_query=Node.js%20Essentials%20Testing%20and%20Error%20Boundaries%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "The built-in node:test runner executes tests without requiring a separate testing framework."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "Inject external dependencies into small functions so tests can simulate failures without the network."
+            },
+            {
+              "title": "Checking the result",
+              "text": "Catch failures at the request boundary and return controlled errors; do not leak stack traces or secrets."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "const test = require(\"node:test\");\nconst assert = require(\"node:assert/strict\");\ntest(\"sum\", () => { assert.equal(2 + 3, 5); });\n// Run with node --test.",
+            "explanation": [
+              "The built-in node:test runner executes tests without requiring a separate testing framework.",
+              "Catch failures at the request boundary and return controlled errors; do not leak stack traces or secrets."
+            ]
+          },
+          "applications": [
+            "Apply testing and error boundaries when building and checking a small Node.js Essentials lab exercise."
+          ],
+          "commonMistakes": [
+            "A test that calls a real paid API can fail due to quota rather than a bug in your code."
+          ],
+          "bestPractices": [
+            "Catch failures at the request boundary and return controlled errors; do not leak stack traces or secrets.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "The built-in node:test runner executes tests without requiring a separate testing framework.",
+            "Inject external dependencies into small functions so tests can simulate failures without the network.",
+            "Catch failures at the request boundary and return controlled errors; do not leak stack traces or secrets."
+          ],
+          "extra": []
+        }
+      }
+    ],
+    "quiz": [
+      {
+        "id": "node-q1",
+        "moduleId": "node-runtime",
+        "difficulty": "easy",
+        "topic": "Runtime",
+        "question": "Node.js is primarily:",
+        "options": [
+          "A JavaScript runtime",
+          "A database",
+          "A CSS library",
+          "An operating system"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "node-q2",
+        "moduleId": "node-runtime",
+        "difficulty": "easy",
+        "topic": "npm",
+        "question": "Which file commonly describes Node.js project dependencies?",
+        "options": [
+          "package.json",
+          "style.css",
+          "schema.xml",
+          "Main.java"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "node-q3",
+        "moduleId": "node-async",
+        "difficulty": "easy",
+        "topic": "Promises",
+        "question": "await is commonly used with:",
+        "options": [
+          "Promises",
+          "CSS rules",
+          "SQL tables only",
+          "HTML attributes"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "node-q4",
+        "moduleId": "node-runtime",
+        "difficulty": "medium",
+        "topic": "Modules",
+        "question": "What is the main benefit of modules?",
+        "options": [
+          "Separating reusable responsibilities",
+          "Disabling functions",
+          "Replacing databases",
+          "Styling buttons"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "node-q5",
+        "moduleId": "node-async",
+        "difficulty": "medium",
+        "topic": "Event loop",
+        "question": "Why does non-blocking I/O matter in Node.js?",
+        "options": [
+          "It lets the process handle other work while I/O waits",
+          "It automatically creates HTML",
+          "It removes all callbacks",
+          "It guarantees infinite CPU"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "node-q6",
+        "moduleId": "node-http",
+        "difficulty": "medium",
+        "topic": "HTTP",
+        "question": "Which status code normally indicates success?",
+        "options": [
+          "200",
+          "404",
+          "500",
+          "301 only"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "node-q7",
+        "moduleId": "nodejs-essentials-m4",
+        "difficulty": "medium",
+        "topic": "Filesystem and Configuration",
+        "question": "Which API suits asynchronous text-file reading in a Node.js request flow?",
+        "options": [
+          "An endless while loop",
+          "fs/promises.readFile",
+          "document.querySelector",
+          "A synchronous delay"
+        ],
+        "correct": 1,
+        "explanation": "Use fs/promises for asynchronous file operations so disk waits do not block other work. Read configuration from process.env and validate required values at startup. Treat missing files and invalid configuration as expected errors with controlled messages."
+      },
+      {
+        "id": "node-q8",
+        "moduleId": "node-async",
+        "difficulty": "hard",
+        "topic": "Blocking behavior",
+        "question": "A route performs a huge synchronous loop for several seconds. What is the likely effect?",
+        "options": [
+          "Other requests can be delayed because the event loop is blocked",
+          "The database becomes CSS",
+          "Every request becomes parallel automatically",
+          "The browser fixes the server"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "node-q9",
+        "moduleId": "node-runtime",
+        "difficulty": "hard",
+        "topic": "Dependency reasoning",
+        "question": "A package is required only while developing and testing. Where should it normally be listed?",
+        "options": [
+          "devDependencies",
+          "dependencies only in every case",
+          "scripts",
+          "keywords"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "node-q10",
+        "moduleId": "nodejs-essentials-m5",
+        "difficulty": "hard",
+        "topic": "Testing and Error Boundaries",
+        "question": "How should an offline test exercise an API-client failure?",
+        "options": [
+          "Consume real quota repeatedly",
+          "Skip all failure tests",
+          "Inject a fake client that rejects",
+          "Log the API key first"
+        ],
+        "correct": 2,
+        "explanation": "The built-in node:test runner executes tests without requiring a separate testing framework. Inject external dependencies into small functions so tests can simulate failures without the network. Catch failures at the request boundary and return controlled errors; do not leak stack traces or secrets."
+      }
+    ]
+  },
+  {
+    "id": "html-css-fundamentals",
+    "title": "HTML & CSS Fundamentals",
+    "modules": [
+      {
+        "id": "html-structure",
+        "title": "HTML Structure",
+        "duration": "45 min",
+        "summary": "Build semantic pages with common HTML elements.",
+        "notes": [
+          "HTML gives a web page its structure using elements such as headings, paragraphs, links, images and forms.",
+          "Semantic elements such as header, nav, main, section and footer improve readability and accessibility.",
+          "Attributes provide extra information such as href for links, src for images and type for form controls."
+        ],
+        "video": {
+          "title": "HTML Full Course for Beginners",
+          "url": "https://www.youtube.com/results?search_query=freeCodeCamp+HTML+full+course+beginners"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Document structure",
+              "text": "A modern HTML document begins with a doctype, then uses the html element as the root. The head stores metadata such as the character set, viewport information and page title, while the body contains the visible interface. Correct nesting matters because the browser converts this markup into a document tree that CSS and JavaScript later use."
+            },
+            {
+              "title": "Elements and attributes",
+              "text": "HTML elements describe content such as headings, paragraphs, links, images, lists and forms. Attributes configure those elements: href identifies a link destination, src identifies a resource, alt describes meaningful images, and type changes the behaviour of an input. Good markup chooses the element that best describes the content rather than using generic containers for everything."
+            },
+            {
+              "title": "Semantic HTML",
+              "text": "Semantic elements such as header, nav, main, section, article, aside and footer communicate the role of each region. They improve maintainability and provide landmarks that assistive technologies can use. Semantic HTML does not mean replacing every div; use a generic container when no element has a more accurate meaning."
+            },
+            {
+              "title": "Forms and accessibility",
+              "text": "Forms should pair every control with a meaningful label and use input types that match the data being collected. Native buttons, links, labels and headings already contain useful keyboard and accessibility behaviour. Starting with correct HTML usually produces a more robust interface than rebuilding basic controls with generic div elements."
+            }
+          ],
+          "codeExample": {
+            "title": "Semantic page example",
+            "language": "html",
+            "code": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>SkillForge</title>\n</head>\n<body>\n    <header>\n        <h1>SkillForge</h1>\n        <nav>\n            <a href=\"dashboard.html\">Dashboard</a>\n            <a href=\"courses.html\">Courses</a>\n        </nav>\n    </header>\n\n    <main>\n        <section>\n            <h2>Continue learning</h2>\n            <article>\n                <h3>JavaScript Foundations</h3>\n                <p>Resume your current course.</p>\n            </article>\n        </section>\n    </main>\n\n    <footer>© SkillForge</footer>\n</body>\n</html>",
+            "explanation": [
+              "The document declares its language and viewport before visible content begins.",
+              "Semantic regions describe the purpose of each major area.",
+              "Headings follow a logical hierarchy and links are used for navigation."
+            ]
+          },
+          "diagram": {
+            "title": "Semantic page hierarchy",
+            "nodes": [
+              "HTML document",
+              "Header + navigation",
+              "Main content",
+              "Section / article",
+              "Footer"
+            ],
+            "caption": "A browser reads the document as a hierarchy. Semantic regions make that hierarchy understandable to developers and assistive tools."
+          },
+          "applications": [
+            "Landing pages, course pages, forms, dashboards and articles all begin with sound document structure."
+          ],
+          "commonMistakes": [
+            "Using div for every region even when a semantic element fits better.",
+            "Skipping heading levels for visual styling reasons.",
+            "Using placeholder text instead of a persistent form label.",
+            "Omitting alt text from meaningful images."
+          ],
+          "bestPractices": [
+            "Write the HTML structure before styling it.",
+            "Use one clear main content area.",
+            "Keep heading order logical.",
+            "Use native controls whenever possible."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "css-styling",
+        "title": "CSS Styling",
+        "duration": "55 min",
+        "summary": "Use selectors, the box model and reusable style rules.",
+        "notes": [
+          "CSS selectors choose which HTML elements a rule will style.",
+          "The box model contains content, padding, border and margin.",
+          "Classes are reusable and are usually preferred over styling many elements with unique IDs."
+        ],
+        "video": {
+          "title": "CSS Full Course for Beginners",
+          "url": "https://www.youtube.com/results?search_query=freeCodeCamp+CSS+full+course+beginners"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Selectors and the cascade",
+              "text": "CSS rules target elements with selectors and assign visual properties. Several rules may match the same element, so the cascade considers origin, importance, specificity and source order. Reusable class selectors are usually easier to maintain than deeply nested or highly specific selectors."
+            },
+            {
+              "title": "The box model",
+              "text": "Every rendered element behaves like a rectangular box containing content, padding, border and margin. Padding creates space inside the border, while margin creates space outside it. Using box-sizing: border-box makes declared width and height include padding and border, which usually makes sizing more predictable."
+            },
+            {
+              "title": "Typography and design tokens",
+              "text": "Readable interfaces depend on font size, line height, contrast and spacing. CSS custom properties can hold repeated values such as brand colors, surface colors, border radii and spacing. This creates a small design system and makes dark/light theme changes easier."
+            },
+            {
+              "title": "Interaction states",
+              "text": "Interactive components should communicate hover, focus, active and disabled states. Pointer hover is helpful, but keyboard users rely on visible focus styles, so focus outlines should not be removed without an accessible replacement. Short transitions can make state changes feel smoother without distracting from the content."
+            }
+          ],
+          "codeExample": {
+            "title": "Reusable card styling",
+            "language": "css",
+            "code": ":root {\n    --primary: #6157f5;\n    --surface: #ffffff;\n    --border: #dedee8;\n    --radius: 16px;\n}\n\n* {\n    box-sizing: border-box;\n}\n\n.course-card {\n    padding: 20px;\n    background: var(--surface);\n    border: 1px solid var(--border);\n    border-radius: var(--radius);\n}\n\n.course-card:hover {\n    transform: translateY(-2px);\n}",
+            "explanation": [
+              "Custom properties centralize the important visual values.",
+              "border-box keeps component dimensions easier to calculate.",
+              "The hover change is small enough to signal interactivity without moving the layout dramatically."
+            ]
+          },
+          "diagram": {
+            "title": "CSS box model",
+            "nodes": [
+              "Margin",
+              "Border",
+              "Padding",
+              "Content"
+            ],
+            "caption": "The four layers wrap from outside to inside. Understanding which layer creates space makes layout debugging much faster."
+          },
+          "applications": [
+            "Cards, forms, navigation, dashboards and responsive components all depend on predictable CSS rules."
+          ],
+          "commonMistakes": [
+            "Using fixed widths plus padding without understanding box sizing.",
+            "Overusing !important.",
+            "Removing keyboard focus indicators.",
+            "Using low-contrast text colors."
+          ],
+          "bestPractices": [
+            "Prefer reusable classes.",
+            "Define common colors and spacing once.",
+            "Test keyboard focus as well as hover.",
+            "Keep selectors as simple as the component allows."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "layout-responsive",
+        "title": "Layouts & Responsive Design",
+        "duration": "60 min",
+        "summary": "Create flexible layouts using Flexbox, Grid and media queries.",
+        "notes": [
+          "Flexbox is useful for one-dimensional row or column layouts.",
+          "CSS Grid is useful for two-dimensional page layouts.",
+          "Media queries adapt layouts to different screen widths and are a core part of responsive design."
+        ],
+        "video": {
+          "title": "Responsive Web Design Tutorial",
+          "url": "https://www.youtube.com/results?search_query=responsive+web+design+flexbox+grid+media+queries+tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Fluid foundations",
+              "text": "Responsive design starts with flexible widths, max-width constraints, relative units and content that can wrap. A layout should naturally adapt before a media query is added. Functions such as min(), max() and clamp() help values scale within sensible limits."
+            },
+            {
+              "title": "Flexbox",
+              "text": "Flexbox arranges items along one main axis and is useful for navigation rows, button groups and aligned card content. justify-content controls distribution on the main axis, align-items controls the cross axis, and flex-wrap lets items move to additional lines when space becomes limited."
+            },
+            {
+              "title": "CSS Grid",
+              "text": "Grid manages rows and columns together, which makes it well suited to dashboards and card galleries. repeat(), minmax() and auto-fit can create responsive layouts that automatically add or remove columns as available width changes."
+            },
+            {
+              "title": "Media queries",
+              "text": "Media queries should solve actual layout failures rather than target a long list of device models. A mobile-first approach starts with the simplest narrow layout and adds enhancements when more space becomes available. Responsive design also considers touch targets, text zoom and user preferences such as reduced motion."
+            }
+          ],
+          "codeExample": {
+            "title": "Responsive card grid",
+            "language": "css",
+            "code": ".courses-grid {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n    gap: 20px;\n}\n\n.page {\n    width: min(1120px, calc(100% - 32px));\n    margin-inline: auto;\n}\n\n@media (max-width: 820px) {\n    .page {\n        width: min(100% - 24px, 680px);\n    }\n}",
+            "explanation": [
+              "The grid chooses the number of columns automatically.",
+              "Cards never become narrower than 240px.",
+              "The page remains centered and leaves safe side spacing on smaller screens."
+            ]
+          },
+          "diagram": {
+            "title": "Responsive workflow",
+            "nodes": [
+              "Flexible base styles",
+              "Flexbox / Grid",
+              "Content reaches limit",
+              "Add breakpoint",
+              "Retest at many widths"
+            ],
+            "caption": "Responsive design is iterative: start fluid, observe where content fails, then add the smallest required adjustment."
+          },
+          "applications": [
+            "Course catalogs, dashboards, authentication pages and learning workspaces need to remain usable on many viewport sizes."
+          ],
+          "commonMistakes": [
+            "Creating device-specific layouts for every common phone size.",
+            "Using absolute positioning for major page structure.",
+            "Giving cards fixed widths that force horizontal scrolling.",
+            "Testing only one mobile and one desktop width."
+          ],
+          "bestPractices": [
+            "Design mobile-first.",
+            "Use Grid/Flexbox before reaching for position hacks.",
+            "Choose breakpoints based on content.",
+            "Test long labels and zoomed text."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "html-css-fundamentals-m4",
+        "title": "Accessible Forms",
+        "duration": "40 min",
+        "summary": "Practice accessible forms through a worked example and a short verification exercise.",
+        "notes": [
+          "Labels connect visible instructions to form controls using matching for and id values.",
+          "Choose input types such as email and number to provide appropriate keyboards and native validation.",
+          "Group related choices with fieldset and legend; show errors beside the relevant field, not only through color."
+        ],
+        "video": {
+          "title": "Accessible Forms tutorial",
+          "url": "https://www.youtube.com/results?search_query=HTML%20%26%20CSS%20Fundamentals%20Accessible%20Forms%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "Labels connect visible instructions to form controls using matching for and id values."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "Choose input types such as email and number to provide appropriate keyboards and native validation."
+            },
+            {
+              "title": "Checking the result",
+              "text": "Group related choices with fieldset and legend; show errors beside the relevant field, not only through color."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "A registration form has a persistent Email label, an email input and a text error explaining how to fix an invalid address. Tab through the form and submit it empty to check both paths.",
+            "explanation": [
+              "Labels connect visible instructions to form controls using matching for and id values.",
+              "Group related choices with fieldset and legend; show errors beside the relevant field, not only through color."
+            ]
+          },
+          "applications": [
+            "Apply accessible forms when building and checking a small HTML & CSS Fundamentals lab exercise."
+          ],
+          "commonMistakes": [
+            "Using placeholder text as the only label makes instructions disappear while typing."
+          ],
+          "bestPractices": [
+            "Group related choices with fieldset and legend; show errors beside the relevant field, not only through color.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "Labels connect visible instructions to form controls using matching for and id values.",
+            "Choose input types such as email and number to provide appropriate keyboards and native validation.",
+            "Group related choices with fieldset and legend; show errors beside the relevant field, not only through color."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "html-css-fundamentals-m5",
+        "title": "CSS Debugging and Reuse",
+        "duration": "40 min",
+        "summary": "Practice css debugging and reuse through a worked example and a short verification exercise.",
+        "notes": [
+          "Use browser developer tools to inspect the computed styles and identify the rule that wins the cascade.",
+          "Create reusable classes for repeated components and custom properties for shared colors and spacing.",
+          "Test long text, keyboard focus and narrow viewports before considering a layout finished."
+        ],
+        "video": {
+          "title": "CSS Debugging and Reuse tutorial",
+          "url": "https://www.youtube.com/results?search_query=HTML%20%26%20CSS%20Fundamentals%20CSS%20Debugging%20and%20Reuse%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "Use browser developer tools to inspect the computed styles and identify the rule that wins the cascade."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "Create reusable classes for repeated components and custom properties for shared colors and spacing."
+            },
+            {
+              "title": "Checking the result",
+              "text": "Test long text, keyboard focus and narrow viewports before considering a layout finished."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "Two card rules assign different padding. Inspect the card, find the winning rule and remove the unnecessary override. Then apply one shared card class to both cards and retest at 320 pixels.",
+            "explanation": [
+              "Use browser developer tools to inspect the computed styles and identify the rule that wins the cascade.",
+              "Test long text, keyboard focus and narrow viewports before considering a layout finished."
+            ]
+          },
+          "applications": [
+            "Apply css debugging and reuse when building and checking a small HTML & CSS Fundamentals lab exercise."
+          ],
+          "commonMistakes": [
+            "Adding important to every declaration hides the source of cascade problems."
+          ],
+          "bestPractices": [
+            "Test long text, keyboard focus and narrow viewports before considering a layout finished.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "Use browser developer tools to inspect the computed styles and identify the rule that wins the cascade.",
+            "Create reusable classes for repeated components and custom properties for shared colors and spacing.",
+            "Test long text, keyboard focus and narrow viewports before considering a layout finished."
+          ],
+          "extra": []
+        }
+      }
+    ],
+    "quiz": [
+      {
+        "id": "html-q1",
+        "moduleId": "html-structure",
+        "difficulty": "easy",
+        "topic": "HTML basics",
+        "question": "Which language defines the structure of a web page?",
+        "options": [
+          "HTML",
+          "CSS",
+          "SQL",
+          "Node.js"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "html-q2",
+        "moduleId": "css-styling",
+        "difficulty": "easy",
+        "topic": "CSS basics",
+        "question": "Which language is mainly used to style HTML elements?",
+        "options": [
+          "Java",
+          "CSS",
+          "MySQL",
+          "Python"
+        ],
+        "correct": 1
+      },
+      {
+        "id": "html-q3",
+        "moduleId": "html-structure",
+        "difficulty": "easy",
+        "topic": "Semantic HTML",
+        "question": "Which element is most appropriate for the main navigation links?",
+        "options": [
+          "<nav>",
+          "<b>",
+          "<img>",
+          "<table>"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "html-q4",
+        "moduleId": "css-styling",
+        "difficulty": "medium",
+        "topic": "Selectors",
+        "question": "Which selector targets every element with class=\"card\"?",
+        "options": [
+          "#card",
+          ".card",
+          "card",
+          "*card"
+        ],
+        "correct": 1
+      },
+      {
+        "id": "html-q5",
+        "moduleId": "css-styling",
+        "difficulty": "medium",
+        "topic": "Box model",
+        "question": "Which box-model area creates space outside an element border?",
+        "options": [
+          "Padding",
+          "Content",
+          "Margin",
+          "Width"
+        ],
+        "correct": 2
+      },
+      {
+        "id": "html-q6",
+        "moduleId": "layout-responsive",
+        "difficulty": "medium",
+        "topic": "Flexbox",
+        "question": "Which declaration turns an element into a flex container?",
+        "options": [
+          "display: flex",
+          "position: flex",
+          "layout: flex",
+          "float: flex"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "html-q7",
+        "moduleId": "html-css-fundamentals-m4",
+        "difficulty": "medium",
+        "topic": "Accessible Forms",
+        "question": "A form field has only placeholder text. What is the best accessibility improvement?",
+        "options": [
+          "Add a persistent associated label",
+          "Remove keyboard focus",
+          "Replace the input with a picture",
+          "Make the placeholder lighter"
+        ],
+        "correct": 0,
+        "explanation": "Labels connect visible instructions to form controls using matching for and id values. Choose input types such as email and number to provide appropriate keyboards and native validation. Group related choices with fieldset and legend; show errors beside the relevant field, not only through color."
+      },
+      {
+        "id": "html-q8",
+        "moduleId": "layout-responsive",
+        "difficulty": "hard",
+        "topic": "Grid layout",
+        "question": "You need rows and columns that align across both dimensions. Which layout system is usually the best fit?",
+        "options": [
+          "CSS Grid",
+          "Inline elements",
+          "Absolute positioning only",
+          "HTML tables for all page layout"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "html-q9",
+        "moduleId": "html-structure",
+        "difficulty": "hard",
+        "topic": "Accessibility",
+        "question": "Why is semantic HTML preferred over using generic div elements everywhere?",
+        "options": [
+          "It automatically adds JavaScript",
+          "It improves meaning and accessibility",
+          "It makes every page offline",
+          "It removes the need for CSS"
+        ],
+        "correct": 1
+      },
+      {
+        "id": "html-q10",
+        "moduleId": "html-css-fundamentals-m5",
+        "difficulty": "hard",
+        "topic": "CSS Debugging and Reuse",
+        "question": "Several cards have conflicting spacing rules. Which fix is most maintainable?",
+        "options": [
+          "Add important to every rule",
+          "Inspect the cascade and consolidate a shared class",
+          "Copy more inline styles",
+          "Remove all padding without inspecting"
+        ],
+        "correct": 1,
+        "explanation": "Use browser developer tools to inspect the computed styles and identify the rule that wins the cascade. Create reusable classes for repeated components and custom properties for shared colors and spacing. Test long text, keyboard focus and narrow viewports before considering a layout finished."
+      }
+    ]
+  },
+  {
+    "id": "javascript-foundations",
+    "title": "JavaScript Foundations",
+    "modules": [
+      {
+        "id": "js-basics",
+        "title": "Variables & Control Flow",
+        "duration": "55 min",
+        "summary": "Use variables, data types, operators and decisions.",
+        "notes": [
+          "let and const declare block-scoped variables; const prevents reassignment of the variable binding.",
+          "JavaScript supports values such as strings, numbers, booleans, arrays, objects, null and undefined.",
+          "if/else and switch select code paths, while loops repeat work."
+        ],
+        "video": {
+          "title": "JavaScript Full Course for Beginners",
+          "url": "https://www.youtube.com/results?search_query=freeCodeCamp+JavaScript+full+course+beginners"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Variables and values",
+              "text": "JavaScript stores values in variables declared with const or let. const prevents reassignment of the binding, while let is appropriate when the value must change. JavaScript is dynamically typed, so the type belongs to the current value rather than being permanently attached to the variable."
+            },
+            {
+              "title": "Data types and operators",
+              "text": "Primitive values include strings, numbers, booleans, undefined, null, bigint and symbol. Objects, arrays and functions are reference values. Arithmetic, comparison and logical operators combine these values into expressions; strict equality (===) is normally preferred because it does not perform implicit type coercion."
+            },
+            {
+              "title": "Conditional logic",
+              "text": "if, else if and else select one branch based on boolean conditions. switch is useful when one expression is compared with several exact values. Clear conditions are easier to maintain when complex tests are stored in descriptively named variables instead of being repeated inline."
+            },
+            {
+              "title": "Loops",
+              "text": "for, while, do...while and for...of repeat work. for...of is especially readable for arrays when the index is not needed. Every loop must make progress toward termination; otherwise it can block the page or server with an infinite loop."
+            }
+          ],
+          "codeExample": {
+            "title": "Score classification",
+            "language": "javascript",
+            "code": "const score = 76;\nlet performance;\n\nif (score >= 90) {\n    performance = \"Excellent\";\n} else if (score >= 75) {\n    performance = \"Very Good\";\n} else if (score >= 60) {\n    performance = \"Good\";\n} else {\n    performance = \"Needs Improvement\";\n}\n\nconsole.log(performance);",
+            "explanation": [
+              "The conditions are evaluated from top to bottom.",
+              "Only the first matching branch runs.",
+              "The same pattern can drive SkillForge's performance labels."
+            ],
+            "output": "Very Good"
+          },
+          "diagram": {
+            "title": "Decision flow",
+            "nodes": [
+              "Input value",
+              "Evaluate condition",
+              "Choose matching branch",
+              "Produce result",
+              "Continue program"
+            ],
+            "caption": "Control flow determines which statements execute and which are skipped."
+          },
+          "applications": [
+            "Form validation, quiz scoring, progress calculations and UI state all use variables and control flow."
+          ],
+          "commonMistakes": [
+            "Using == when strict equality is intended.",
+            "Reassigning a const variable.",
+            "Forgetting that form input values often start as strings.",
+            "Creating a loop whose condition never changes."
+          ],
+          "bestPractices": [
+            "Prefer const by default.",
+            "Use meaningful condition names.",
+            "Convert external input explicitly.",
+            "Keep loops simple and bounded."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "js-functions",
+        "title": "Functions, Arrays & Objects",
+        "duration": "65 min",
+        "summary": "Organize logic with functions and collections.",
+        "notes": [
+          "Functions package reusable behavior and can receive parameters and return values.",
+          "Arrays store ordered values and provide methods such as map, filter and find.",
+          "Objects group related data using key-value properties."
+        ],
+        "video": {
+          "title": "JavaScript Functions Arrays Objects",
+          "url": "https://www.youtube.com/results?search_query=JavaScript+functions+arrays+objects+tutorial+beginners"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Functions",
+              "text": "Functions package reusable behaviour. Parameters describe incoming data, arguments are the actual values passed by a caller, and return sends a result back. Small functions with clear inputs and outputs are easier to test and reuse than large procedures that read and mutate many global values."
+            },
+            {
+              "title": "Arrays",
+              "text": "Arrays store ordered values and provide methods for common transformations. map creates a new array by transforming every item, filter keeps items matching a condition, find returns the first match, and reduce combines the collection into one accumulated result."
+            },
+            {
+              "title": "Objects",
+              "text": "Objects group related data under named properties, making them useful for entities such as learners, courses and quiz attempts. Dot notation is concise for known property names; bracket notation is useful when a key is computed dynamically."
+            },
+            {
+              "title": "Destructuring and spread",
+              "text": "Destructuring extracts selected properties or array items into variables. Spread syntax can create a shallow copy with modified fields, which is useful when UI code should avoid mutating shared state directly."
+            }
+          ],
+          "codeExample": {
+            "title": "Transform course data",
+            "language": "javascript",
+            "code": "const courses = [\n    { title: \"HTML\", completed: true },\n    { title: \"JavaScript\", completed: false },\n    { title: \"Node.js\", completed: true }\n];\n\nconst completedTitles = courses\n    .filter(course => course.completed)\n    .map(course => course.title);\n\nconsole.log(completedTitles);",
+            "explanation": [
+              "filter removes incomplete courses.",
+              "map then extracts only the title from each remaining object.",
+              "The original array is left unchanged."
+            ],
+            "output": "[\"HTML\", \"Node.js\"]"
+          },
+          "diagram": {
+            "title": "Data transformation pipeline",
+            "nodes": [
+              "Array of objects",
+              "filter()",
+              "map()",
+              "reduce() / final result"
+            ],
+            "caption": "Array methods can be chained into a readable sequence of selecting, transforming and summarizing data."
+          },
+          "applications": [
+            "Dashboards commonly filter enrolled courses, map API records into cards and reduce quiz results into averages."
+          ],
+          "commonMistakes": [
+            "Forgetting return in a block-bodied arrow callback.",
+            "Mutating shared objects unexpectedly.",
+            "Using map when filter or forEach better matches the intent.",
+            "Writing one large function that fetches, calculates and renders everything."
+          ],
+          "bestPractices": [
+            "Give functions one responsibility.",
+            "Choose array methods by purpose.",
+            "Use objects for named structured data.",
+            "Prefer clear transformations over hidden mutation."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "js-dom",
+        "title": "DOM & Events",
+        "duration": "60 min",
+        "summary": "Make pages interactive by reading and updating the DOM.",
+        "notes": [
+          "The DOM represents the HTML document as objects JavaScript can query and modify.",
+          "addEventListener attaches behavior to events such as click, input and submit.",
+          "User input should be validated before it is processed or sent to a backend."
+        ],
+        "video": {
+          "title": "JavaScript DOM Tutorial",
+          "url": "https://www.youtube.com/results?search_query=JavaScript+DOM+events+tutorial+beginners"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "The DOM tree",
+              "text": "The browser parses HTML into the Document Object Model, a tree of nodes exposed through the document object. JavaScript can query that tree and change the visible page without reloading the whole document."
+            },
+            {
+              "title": "Selecting and updating elements",
+              "text": "querySelector returns the first element matching a CSS selector and querySelectorAll returns a collection of matches. textContent is the safest default for plain external text, while classList is useful for adding or removing state classes."
+            },
+            {
+              "title": "Events",
+              "text": "Events represent user or browser actions such as click, input, submit and keydown. addEventListener attaches handlers without overwriting existing behaviour. The event object exposes the target and lets a handler prevent default browser behaviour when the application intentionally replaces it."
+            },
+            {
+              "title": "Event delegation",
+              "text": "Most events bubble through ancestor elements. A parent can therefore listen for interactions from many child elements, which is especially useful for lists created dynamically after an API response. closest() helps determine whether the original target was inside an actionable control."
+            }
+          ],
+          "codeExample": {
+            "title": "Delegated course action",
+            "language": "javascript",
+            "code": "document.querySelector(\"#courseList\")?.addEventListener(\"click\", (event) => {\n    const button = event.target.closest(\"[data-course-id]\");\n    if (!button) return;\n\n    const courseId = button.dataset.courseId;\n    console.log(\"Open course:\", courseId);\n});",
+            "explanation": [
+              "Only one listener is attached to the list.",
+              "closest() handles clicks on text or icons inside the button.",
+              "The pattern continues to work for cards inserted later."
+            ]
+          },
+          "diagram": {
+            "title": "DOM interaction flow",
+            "nodes": [
+              "User action",
+              "Browser event",
+              "Event listener",
+              "Application logic",
+              "DOM update"
+            ],
+            "caption": "The DOM is where JavaScript turns data and user actions into visible interface changes."
+          },
+          "applications": [
+            "Course-card buttons, forms, theme toggles, progress controls and quiz options all rely on DOM events."
+          ],
+          "commonMistakes": [
+            "Using innerHTML with untrusted text.",
+            "Attaching duplicate listeners on every re-render.",
+            "Assuming querySelector always finds an element.",
+            "Listening only for button click when form submit is the real interaction."
+          ],
+          "bestPractices": [
+            "Use semantic controls.",
+            "Prefer textContent for plain text.",
+            "Use event delegation for dynamic collections.",
+            "Keep event handlers small."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "javascript-foundations-m4",
+        "title": "Promises and Fetch",
+        "duration": "40 min",
+        "summary": "Practice promises and fetch through a worked example and a short verification exercise.",
+        "notes": [
+          "A promise represents a future result; await pauses the current async function while other work can continue.",
+          "Fetch resolves for HTTP error responses too, so inspect response.ok before consuming successful data.",
+          "Use try/catch/finally to display errors and restore loading controls after either success or failure."
+        ],
+        "video": {
+          "title": "Promises and Fetch tutorial",
+          "url": "https://www.youtube.com/results?search_query=JavaScript%20Foundations%20Promises%20and%20Fetch%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "A promise represents a future result; await pauses the current async function while other work can continue."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "Fetch resolves for HTTP error responses too, so inspect response.ok before consuming successful data."
+            },
+            {
+              "title": "Checking the result",
+              "text": "Use try/catch/finally to display errors and restore loading controls after either success or failure."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "async function load() { try { const r = await fetch(\"/api/courses\"); if (!r.ok) throw new Error(\"Request failed\"); return await r.json(); } catch { return []; } }",
+            "explanation": [
+              "A promise represents a future result; await pauses the current async function while other work can continue.",
+              "Use try/catch/finally to display errors and restore loading controls after either success or failure."
+            ]
+          },
+          "applications": [
+            "Apply promises and fetch when building and checking a small JavaScript Foundations lab exercise."
+          ],
+          "commonMistakes": [
+            "Assuming every resolved fetch request was an HTTP success."
+          ],
+          "bestPractices": [
+            "Use try/catch/finally to display errors and restore loading controls after either success or failure.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "A promise represents a future result; await pauses the current async function while other work can continue.",
+            "Fetch resolves for HTTP error responses too, so inspect response.ok before consuming successful data.",
+            "Use try/catch/finally to display errors and restore loading controls after either success or failure."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "javascript-foundations-m5",
+        "title": "Debugging and Small Tests",
+        "duration": "40 min",
+        "summary": "Practice debugging and small tests through a worked example and a short verification exercise.",
+        "notes": [
+          "Break a calculation into a pure function with explicit inputs and a return value.",
+          "Use breakpoints to inspect actual values rather than guessing which line failed.",
+          "Test normal values, boundaries and invalid inputs; strict comparisons help reveal unexpected types."
+        ],
+        "video": {
+          "title": "Debugging and Small Tests tutorial",
+          "url": "https://www.youtube.com/results?search_query=JavaScript%20Foundations%20Debugging%20and%20Small%20Tests%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "Break a calculation into a pure function with explicit inputs and a return value."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "Use breakpoints to inspect actual values rather than guessing which line failed."
+            },
+            {
+              "title": "Checking the result",
+              "text": "Test normal values, boundaries and invalid inputs; strict comparisons help reveal unexpected types."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "function percent(done, total) { if (total <= 0) return 0; return Math.round(done / total * 100); }\nconsole.assert(percent(1, 5) === 20);\nconsole.assert(percent(0, 0) === 0);",
+            "explanation": [
+              "Break a calculation into a pure function with explicit inputs and a return value.",
+              "Test normal values, boundaries and invalid inputs; strict comparisons help reveal unexpected types."
+            ]
+          },
+          "applications": [
+            "Apply debugging and small tests when building and checking a small JavaScript Foundations lab exercise."
+          ],
+          "commonMistakes": [
+            "Testing only the happy path leaves empty inputs and boundary errors undetected."
+          ],
+          "bestPractices": [
+            "Test normal values, boundaries and invalid inputs; strict comparisons help reveal unexpected types.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "Break a calculation into a pure function with explicit inputs and a return value.",
+            "Use breakpoints to inspect actual values rather than guessing which line failed.",
+            "Test normal values, boundaries and invalid inputs; strict comparisons help reveal unexpected types."
+          ],
+          "extra": []
+        }
+      }
+    ],
+    "quiz": [
+      {
+        "id": "js-q1",
+        "moduleId": "js-basics",
+        "difficulty": "easy",
+        "topic": "Variables",
+        "question": "Which keyword declares a block-scoped variable that can be reassigned?",
+        "options": [
+          "let",
+          "const",
+          "class",
+          "import"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "js-q2",
+        "moduleId": "js-basics",
+        "difficulty": "easy",
+        "topic": "Data types",
+        "question": "Which value is a JavaScript boolean?",
+        "options": [
+          "\"true\"",
+          "1",
+          "true",
+          "null"
+        ],
+        "correct": 2
+      },
+      {
+        "id": "js-q3",
+        "moduleId": "js-functions",
+        "difficulty": "easy",
+        "topic": "Functions",
+        "question": "What keyword sends a value back from a function?",
+        "options": [
+          "break",
+          "return",
+          "yield only",
+          "export"
+        ],
+        "correct": 1
+      },
+      {
+        "id": "js-q4",
+        "moduleId": "js-functions",
+        "difficulty": "medium",
+        "topic": "Arrays",
+        "question": "Which method creates a new array by transforming every item?",
+        "options": [
+          "map()",
+          "push() only",
+          "join()",
+          "indexOf()"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "js-q5",
+        "moduleId": "js-functions",
+        "difficulty": "medium",
+        "topic": "Objects",
+        "question": "How do you normally access the name property of object user?",
+        "options": [
+          "user.name",
+          "user->name",
+          "user::name",
+          "name(user)"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "js-q6",
+        "moduleId": "js-dom",
+        "difficulty": "medium",
+        "topic": "DOM selection",
+        "question": "Which method can select an element using a CSS selector?",
+        "options": [
+          "document.querySelector()",
+          "document.compile()",
+          "window.sql()",
+          "console.select()"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "js-q7",
+        "moduleId": "javascript-foundations-m4",
+        "difficulty": "medium",
+        "topic": "Promises and Fetch",
+        "question": "A fetch request resolves with status 404. What should your code inspect?",
+        "options": [
+          "Only whether fetch resolved",
+          "response.ok or response.status",
+          "The page background color",
+          "The array length before parsing"
+        ],
+        "correct": 1,
+        "explanation": "A promise represents a future result; await pauses the current async function while other work can continue. Fetch resolves for HTTP error responses too, so inspect response.ok before consuming successful data. Use try/catch/finally to display errors and restore loading controls after either success or failure."
+      },
+      {
+        "id": "js-q8",
+        "moduleId": "js-functions",
+        "difficulty": "hard",
+        "topic": "Array reasoning",
+        "question": "You need only products costing more than 1000. Which array method most directly expresses this?",
+        "options": [
+          "filter()",
+          "map()",
+          "sort() only",
+          "concat()"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "js-q9",
+        "moduleId": "js-dom",
+        "difficulty": "hard",
+        "topic": "Form behavior",
+        "question": "Why is event.preventDefault() often used in a JavaScript form submit handler?",
+        "options": [
+          "To stop the browser default submission while custom logic runs",
+          "To delete the form",
+          "To restart the server",
+          "To create a database table"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "js-q10",
+        "moduleId": "javascript-foundations-m5",
+        "difficulty": "hard",
+        "topic": "Debugging and Small Tests",
+        "question": "A percentage function passes for 1 of 5 but crashes for an empty course. Which test exposes the missing case?",
+        "options": [
+          "Another 1-of-5 test",
+          "A test of the button color",
+          "A zero-total test",
+          "A test that always returns true"
+        ],
+        "correct": 2,
+        "explanation": "Break a calculation into a pure function with explicit inputs and a return value. Use breakpoints to inspect actual values rather than guessing which line failed. Test normal values, boundaries and invalid inputs; strict comparisons help reveal unexpected types."
+      }
+    ]
+  },
+  {
+    "id": "python-basics",
+    "title": "Python Programming Basics",
+    "modules": [
+      {
+        "id": "py-basics",
+        "title": "Python Syntax & Decisions",
+        "duration": "50 min",
+        "summary": "Use Python variables, conditions and loops.",
+        "notes": [
+          "Python uses indentation to define code blocks instead of braces.",
+          "Variables are dynamically typed and can refer to different value types.",
+          "if/elif/else handles decisions, while for and while handle repetition."
+        ],
+        "video": {
+          "title": "Python Full Course for Beginners",
+          "url": "https://www.youtube.com/results?search_query=freeCodeCamp+Python+full+course+beginners"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Readable syntax",
+              "text": "Python uses indentation rather than braces to define blocks. Consistent four-space indentation is therefore part of program correctness, not only formatting."
+            },
+            {
+              "title": "Values and dynamic typing",
+              "text": "Variables are created by assignment and can refer to values of different types over time. Common types include int, float, str, bool and None, while type() and isinstance() can inspect values when needed."
+            },
+            {
+              "title": "Decisions",
+              "text": "if, elif and else choose branches. Python supports chained comparisons such as 0 <= score <= 100 and uses and, or and not for boolean logic. Use == for value comparison and reserve is mainly for identity checks such as value is None."
+            },
+            {
+              "title": "Loops",
+              "text": "for iterates directly over iterables such as lists, ranges and strings; while repeats while a condition remains true. enumerate() provides indexes alongside values and often replaces manual counter logic."
+            }
+          ],
+          "codeExample": {
+            "title": "Python score classification",
+            "language": "python",
+            "code": "score = 76\n\nif score >= 90:\n    performance = \"Excellent\"\nelif score >= 75:\n    performance = \"Very Good\"\nelif score >= 60:\n    performance = \"Good\"\nelse:\n    performance = \"Needs Improvement\"\n\nprint(performance)",
+            "explanation": [
+              "Indentation defines each branch.",
+              "Only the first true condition executes.",
+              "The syntax stays compact without braces."
+            ],
+            "output": "Very Good"
+          },
+          "diagram": {
+            "title": "Python decision flow",
+            "nodes": [
+              "Evaluate expression",
+              "if",
+              "elif alternatives",
+              "else fallback",
+              "Continue"
+            ],
+            "caption": "Only one branch of an if/elif/else chain runs, after which execution continues below the block."
+          },
+          "applications": [
+            "Automation scripts, data processing and backend code all depend on these basic types and control structures."
+          ],
+          "commonMistakes": [
+            "Mixing tabs and spaces.",
+            "Using is for ordinary value equality.",
+            "Shadowing built-ins such as list or str.",
+            "Writing manual index loops where direct iteration is clearer."
+          ],
+          "bestPractices": [
+            "Use snake_case names.",
+            "Prefer direct iteration.",
+            "Keep conditions readable.",
+            "Use None explicitly for missing values."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "py-functions",
+        "title": "Functions & Collections",
+        "duration": "60 min",
+        "summary": "Organize code and work with lists, dictionaries and sets.",
+        "notes": [
+          "def declares a function and return sends a result back to the caller.",
+          "Lists are ordered and mutable; tuples are ordered and commonly used as immutable records.",
+          "Dictionaries store values by key and are useful for structured lookup."
+        ],
+        "video": {
+          "title": "Python Functions Lists Dictionaries",
+          "url": "https://www.youtube.com/results?search_query=Python+functions+lists+dictionaries+beginners"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Functions and return values",
+              "text": "Functions are defined with def and group reusable logic behind a name. Parameters describe the inputs and return sends a result back to the caller. A function with no explicit return produces None."
+            },
+            {
+              "title": "Lists and tuples",
+              "text": "Lists are mutable ordered collections and support operations such as append, remove, slicing and iteration. Tuples are ordered but immutable, which makes them useful for fixed groups of values."
+            },
+            {
+              "title": "Sets and dictionaries",
+              "text": "Sets store unique hashable values and are ideal for membership tests. Dictionaries map keys to values and work well for structured records such as course scores or user settings."
+            },
+            {
+              "title": "Comprehensions and built-ins",
+              "text": "List, set and dictionary comprehensions offer concise transformations when the expression stays readable. Built-ins such as sum, min, max, sorted, any and all reduce manual looping and often communicate intent more clearly."
+            }
+          ],
+          "codeExample": {
+            "title": "Process learner scores",
+            "language": "python",
+            "code": "attempts = [\n    {\"course\": \"HTML\", \"score\": 95},\n    {\"course\": \"JavaScript\", \"score\": 85},\n    {\"course\": \"Git\", \"score\": 90},\n]\n\naverage = sum(item[\"score\"] for item in attempts) / len(attempts)\npassed = [item[\"course\"] for item in attempts if item[\"score\"] >= 60]\n\nprint(round(average, 1))\nprint(passed)",
+            "explanation": [
+              "A generator expression supplies values directly to sum.",
+              "A list comprehension filters and transforms in one readable step.",
+              "The calculation is separate from presentation."
+            ],
+            "output": "90.0\n['HTML', 'JavaScript', 'Git']"
+          },
+          "diagram": {
+            "title": "Collection choice",
+            "nodes": [
+              "Ordered + mutable → list",
+              "Ordered + fixed → tuple",
+              "Unique values → set",
+              "Key/value lookup → dict"
+            ],
+            "caption": "Choose a collection according to the operations and meaning required by the data."
+          },
+          "applications": [
+            "Lists of courses, dictionaries for profile data and sets of unique skills are common application patterns."
+          ],
+          "commonMistakes": [
+            "Using a mutable list/dict as a default argument.",
+            "Choosing a list when uniqueness is the real requirement.",
+            "Writing deeply nested comprehensions.",
+            "Assuming a dictionary key always exists."
+          ],
+          "bestPractices": [
+            "Keep functions focused.",
+            "Use collections by semantics.",
+            "Use dict.get() for optional keys.",
+            "Prefer simple comprehensions and normal loops for complex logic."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "py-files",
+        "title": "Files & Exceptions",
+        "duration": "55 min",
+        "summary": "Read files and handle errors with exceptions.",
+        "notes": [
+          "with open(...) automatically closes a file when the block finishes.",
+          "Try/except handles expected failures such as invalid input or missing files.",
+          "File modes include r for reading, w for writing and a for appending."
+        ],
+        "video": {
+          "title": "Python File Handling and Exceptions",
+          "url": "https://www.youtube.com/results?search_query=Python+file+handling+exceptions+tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Opening files safely",
+              "text": "open() creates a file object and accepts modes such as r, w and a. A with statement uses a context manager so the file is closed automatically even if an exception occurs."
+            },
+            {
+              "title": "Reading and writing text",
+              "text": "Text files should normally specify an encoding such as UTF-8. read() can load small files at once, while line-by-line iteration scales better for large files. Writing with mode w replaces existing content, so it should be used carefully."
+            },
+            {
+              "title": "Exception handling",
+              "text": "try contains work that may fail, except handles specific failures, else runs when no exception occurred, and finally runs regardless of the result. Catch only exceptions you can handle meaningfully."
+            },
+            {
+              "title": "Raising errors",
+              "text": "raise allows a function to enforce its contract. For example, invalid score ranges can produce ValueError. Clear error messages make failures easier for callers to diagnose and recover from."
+            }
+          ],
+          "codeExample": {
+            "title": "Read a saved score",
+            "language": "python",
+            "code": "try:\n    with open(\"score.txt\", \"r\", encoding=\"utf-8\") as file:\n        score = int(file.read().strip())\nexcept FileNotFoundError:\n    score = 0\nexcept ValueError:\n    print(\"Saved score is invalid.\")\n    score = 0\nelse:\n    print(\"Score loaded successfully.\")\n\nprint(score)",
+            "explanation": [
+              "The context manager closes the file automatically.",
+              "A missing file and invalid content receive separate handling.",
+              "The program recovers with a safe default."
+            ]
+          },
+          "diagram": {
+            "title": "Safe file flow",
+            "nodes": [
+              "Build path",
+              "Open with context manager",
+              "Read / write",
+              "Handle specific exception",
+              "Resource closes automatically"
+            ],
+            "caption": "Context managers provide deterministic cleanup, while exception handlers deal with recoverable failures."
+          },
+          "applications": [
+            "Exporting a report, reading configuration and processing text files all use these patterns."
+          ],
+          "commonMistakes": [
+            "Opening with w and unintentionally erasing content.",
+            "Forgetting to close a file.",
+            "Using a bare except.",
+            "Building paths directly from untrusted input."
+          ],
+          "bestPractices": [
+            "Use with for files.",
+            "Specify UTF-8 for text.",
+            "Catch narrow exception types.",
+            "Validate data before using or saving it."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "python-basics-m4",
+        "title": "Modules and Virtual Environments",
+        "duration": "40 min",
+        "summary": "Practice modules and virtual environments through a worked example and a short verification exercise.",
+        "notes": [
+          "Put reusable functions in a module and import them where needed instead of copying their definitions.",
+          "A virtual environment isolates dependencies for one project from packages installed for other projects.",
+          "Use a main guard to keep demonstration code from running when a module is imported."
+        ],
+        "video": {
+          "title": "Modules and Virtual Environments tutorial",
+          "url": "https://www.youtube.com/results?search_query=Python%20Programming%20Basics%20Modules%20and%20Virtual%20Environments%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "Put reusable functions in a module and import them where needed instead of copying their definitions."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "A virtual environment isolates dependencies for one project from packages installed for other projects."
+            },
+            {
+              "title": "Checking the result",
+              "text": "Use a main guard to keep demonstration code from running when a module is imported."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "def square(value):\n    return value * value\n\nif __name__ == \"__main__\":\n    print(square(4))\n# Running the file prints 16; importing it only defines the function.",
+            "explanation": [
+              "Put reusable functions in a module and import them where needed instead of copying their definitions.",
+              "Use a main guard to keep demonstration code from running when a module is imported."
+            ]
+          },
+          "applications": [
+            "Apply modules and virtual environments when building and checking a small Python Programming Basics lab exercise."
+          ],
+          "commonMistakes": [
+            "Naming a local file json.py can accidentally shadow the standard json module."
+          ],
+          "bestPractices": [
+            "Use a main guard to keep demonstration code from running when a module is imported.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "Put reusable functions in a module and import them where needed instead of copying their definitions.",
+            "A virtual environment isolates dependencies for one project from packages installed for other projects.",
+            "Use a main guard to keep demonstration code from running when a module is imported."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "python-basics-m5",
+        "title": "Testing and Data Validation",
+        "duration": "40 min",
+        "summary": "Practice testing and data validation through a worked example and a short verification exercise.",
+        "notes": [
+          "Validate external data before using it in a calculation or saving it to a file.",
+          "Keep a small calculation independent of input() so tests can call it directly.",
+          "Use assertions or unittest to check expected results, invalid values and boundary cases."
+        ],
+        "video": {
+          "title": "Testing and Data Validation tutorial",
+          "url": "https://www.youtube.com/results?search_query=Python%20Programming%20Basics%20Testing%20and%20Data%20Validation%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "Validate external data before using it in a calculation or saving it to a file."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "Keep a small calculation independent of input() so tests can call it directly."
+            },
+            {
+              "title": "Checking the result",
+              "text": "Use assertions or unittest to check expected results, invalid values and boundary cases."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "def average(values):\n    if not values:\n        raise ValueError(\"At least one value is required\")\n    return sum(values) / len(values)\n\nassert average([60, 80]) == 70\n# An empty list must raise ValueError.",
+            "explanation": [
+              "Validate external data before using it in a calculation or saving it to a file.",
+              "Use assertions or unittest to check expected results, invalid values and boundary cases."
+            ]
+          },
+          "applications": [
+            "Apply testing and data validation when building and checking a small Python Programming Basics lab exercise."
+          ],
+          "commonMistakes": [
+            "Silently returning zero for missing marks can be confused with a real zero score."
+          ],
+          "bestPractices": [
+            "Use assertions or unittest to check expected results, invalid values and boundary cases.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "Validate external data before using it in a calculation or saving it to a file.",
+            "Keep a small calculation independent of input() so tests can call it directly.",
+            "Use assertions or unittest to check expected results, invalid values and boundary cases."
+          ],
+          "extra": []
+        }
+      }
+    ],
+    "quiz": [
+      {
+        "id": "py-q1",
+        "moduleId": "py-basics",
+        "difficulty": "easy",
+        "topic": "Syntax",
+        "question": "What defines a Python code block?",
+        "options": [
+          "Indentation",
+          "Curly braces only",
+          "Semicolons",
+          "HTML tags"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "py-q2",
+        "moduleId": "py-basics",
+        "difficulty": "easy",
+        "topic": "Loops",
+        "question": "Which keyword iterates over items in a sequence?",
+        "options": [
+          "for",
+          "repeat",
+          "foreach only",
+          "iterate"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "py-q3",
+        "moduleId": "py-functions",
+        "difficulty": "easy",
+        "topic": "Functions",
+        "question": "Which keyword defines a function?",
+        "options": [
+          "def",
+          "function",
+          "func",
+          "method"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "py-q4",
+        "moduleId": "py-functions",
+        "difficulty": "medium",
+        "topic": "Lists",
+        "question": "Which method adds one item to the end of a list?",
+        "options": [
+          "append()",
+          "addLastOnly()",
+          "pushJava()",
+          "insertSQL()"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "py-q5",
+        "moduleId": "py-functions",
+        "difficulty": "medium",
+        "topic": "Dictionaries",
+        "question": "A Python dictionary stores data as:",
+        "options": [
+          "Key-value pairs",
+          "Only numbers",
+          "Only files",
+          "CSS rules"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "py-q6",
+        "moduleId": "py-files",
+        "difficulty": "medium",
+        "topic": "Files",
+        "question": "Why is with open(...) commonly preferred?",
+        "options": [
+          "It automatically manages closing the file",
+          "It turns the file into HTML",
+          "It creates a database",
+          "It disables errors"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "py-q7",
+        "moduleId": "python-basics-m4",
+        "difficulty": "medium",
+        "topic": "Modules and Virtual Environments",
+        "question": "Why use a Python virtual environment for a lab project?",
+        "options": [
+          "To change indentation rules",
+          "To make all code asynchronous",
+          "To remove the need for imports",
+          "To isolate project dependencies"
+        ],
+        "correct": 3,
+        "explanation": "Put reusable functions in a module and import them where needed instead of copying their definitions. A virtual environment isolates dependencies for one project from packages installed for other projects. Use a main guard to keep demonstration code from running when a module is imported."
+      },
+      {
+        "id": "py-q8",
+        "moduleId": "py-functions",
+        "difficulty": "hard",
+        "topic": "Collection choice",
+        "question": "You need unique values and do not care about duplicates. Which collection is most suitable?",
+        "options": [
+          "set",
+          "list only",
+          "string",
+          "file"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "py-q9",
+        "moduleId": "py-basics",
+        "difficulty": "hard",
+        "topic": "Reasoning",
+        "question": "What is produced by list(range(1,4))?",
+        "options": [
+          "[1, 2, 3]",
+          "[1, 2, 3, 4]",
+          "[0, 1, 2, 3]",
+          "[4]"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "py-q10",
+        "moduleId": "python-basics-m5",
+        "difficulty": "hard",
+        "topic": "Testing and Data Validation",
+        "question": "An average function rejects empty lists. What should a test of average([]) verify?",
+        "options": [
+          "That ValueError is raised",
+          "That an arbitrary mark is returned",
+          "That input is silently ignored",
+          "That every valid list is rejected"
+        ],
+        "correct": 0,
+        "explanation": "Validate external data before using it in a calculation or saving it to a file. Keep a small calculation independent of input() so tests can call it directly. Use assertions or unittest to check expected results, invalid values and boundary cases."
+      }
+    ]
+  },
+  {
+    "id": "mysql-fundamentals",
+    "title": "Database & MySQL Fundamentals",
+    "modules": [
+      {
+        "id": "sql-relational",
+        "title": "Relational Database Basics",
+        "duration": "50 min",
+        "summary": "Understand tables, keys and relationships.",
+        "notes": [
+          "A relational database stores structured data in tables made of rows and columns.",
+          "A primary key uniquely identifies each row.",
+          "Foreign keys connect related tables and help maintain referential integrity."
+        ],
+        "video": {
+          "title": "MySQL Tutorial for Beginners",
+          "url": "https://www.youtube.com/results?search_query=MySQL+database+tutorial+beginners+relational+keys"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Tables, rows and columns",
+              "text": "Relational databases store facts in tables. Columns define named attributes and data types, while rows represent individual records. A clear table should represent one entity or relationship and avoid storing several unrelated facts in one field."
+            },
+            {
+              "title": "Primary keys",
+              "text": "A primary key uniquely identifies each row and cannot be null. Auto-increment integer IDs are common surrogate keys, while stable natural identifiers can also work when they are truly unique and unlikely to change."
+            },
+            {
+              "title": "Foreign keys",
+              "text": "A foreign key stores the identifier of a related row and can enforce referential integrity. One-to-many relationships place the foreign key on the many side; many-to-many relationships use a junction table that references both entities."
+            },
+            {
+              "title": "Constraints and normalization",
+              "text": "NOT NULL, UNIQUE, CHECK and foreign-key constraints protect data quality inside the database. Normalization reduces duplication by storing each fact in one logical place, which prevents update anomalies and inconsistent copies."
+            }
+          ],
+          "codeExample": {
+            "title": "Learners and enrollments",
+            "language": "sql",
+            "code": "CREATE TABLE learners (\n    learner_id INT AUTO_INCREMENT PRIMARY KEY,\n    name VARCHAR(100) NOT NULL,\n    email VARCHAR(254) NOT NULL UNIQUE\n);\n\nCREATE TABLE enrollments (\n    learner_id INT NOT NULL,\n    course_id VARCHAR(80) NOT NULL,\n    enrolled_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n    PRIMARY KEY (learner_id, course_id),\n    FOREIGN KEY (learner_id) REFERENCES learners(learner_id)\n);",
+            "explanation": [
+              "The learner table stores one row per learner.",
+              "The enrollment table represents a relationship rather than duplicating learner details.",
+              "The composite key prevents duplicate enrollment in the same course."
+            ]
+          },
+          "diagram": {
+            "title": "Relational relationship",
+            "nodes": [
+              "Learner",
+              "Enrollment",
+              "Course identity",
+              "Progress",
+              "Quiz result"
+            ],
+            "caption": "Keys connect independent tables so learner-specific state can be queried without duplicating the same facts repeatedly."
+          },
+          "applications": [
+            "User accounts, enrollments, progress and quiz results are natural relational records in SkillForge."
+          ],
+          "commonMistakes": [
+            "Using names as primary keys.",
+            "Storing comma-separated IDs in one column.",
+            "Duplicating user details in every enrollment row.",
+            "Using mismatched data types for related keys."
+          ],
+          "bestPractices": [
+            "Choose stable IDs.",
+            "Use database constraints.",
+            "Represent many-to-many relationships explicitly.",
+            "Normalize enough to avoid duplicated facts."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "sql-crud",
+        "title": "SQL CRUD Operations",
+        "duration": "60 min",
+        "summary": "Create, read, update and delete data with SQL.",
+        "notes": [
+          "INSERT adds rows, SELECT reads rows, UPDATE changes rows and DELETE removes rows.",
+          "WHERE filters rows and ORDER BY controls result ordering.",
+          "Parameterized queries should be used in applications to reduce SQL injection risk."
+        ],
+        "video": {
+          "title": "SQL CRUD Tutorial",
+          "url": "https://www.youtube.com/results?search_query=SQL+CRUD+SELECT+INSERT+UPDATE+DELETE+tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Create with INSERT",
+              "text": "INSERT adds rows. Listing the target columns makes a statement explicit and prevents accidental dependence on physical column order. Auto-generated IDs are usually omitted so the database can assign them."
+            },
+            {
+              "title": "Read with SELECT",
+              "text": "SELECT retrieves data. WHERE filters rows, ORDER BY controls sorting, LIMIT constrains result count and aggregate functions such as COUNT and AVG summarize groups of records."
+            },
+            {
+              "title": "Update safely",
+              "text": "UPDATE changes existing rows. A missing WHERE clause can modify an entire table, so the target condition should be tested carefully. Applications should also verify that a learner is authorized to change the selected record."
+            },
+            {
+              "title": "Delete and parameterization",
+              "text": "DELETE removes rows and carries the same WHERE-clause risk as UPDATE. In application code, external values should be passed as query parameters rather than concatenated into SQL strings; this keeps data separate from SQL syntax and prevents injection."
+            }
+          ],
+          "codeExample": {
+            "title": "CRUD examples",
+            "language": "sql",
+            "code": "INSERT INTO learners (name, email)\nVALUES ('Asha Rao', 'asha@example.com');\n\nSELECT id, name, email\nFROM learners\nWHERE email = 'asha@example.com';\n\nUPDATE learners\nSET name = 'Asha R.'\nWHERE id = 7;\n\nDELETE FROM learners\nWHERE id = 7;",
+            "explanation": [
+              "Each statement maps to one CRUD operation.",
+              "The UPDATE and DELETE statements deliberately target one row.",
+              "Application code should parameterize all external values rather than embedding them directly."
+            ]
+          },
+          "diagram": {
+            "title": "CRUD lifecycle",
+            "nodes": [
+              "Create → INSERT",
+              "Read → SELECT",
+              "Update → UPDATE ... WHERE",
+              "Delete → DELETE ... WHERE"
+            ],
+            "caption": "CRUD is the foundation of most database-backed web application workflows."
+          },
+          "applications": [
+            "Registration creates users, dashboards read state, profile screens update records and account-cleanup workflows may delete data."
+          ],
+          "commonMistakes": [
+            "Running UPDATE/DELETE without WHERE.",
+            "Concatenating form input into SQL.",
+            "Using = NULL instead of IS NULL.",
+            "Selecting unnecessary columns everywhere."
+          ],
+          "bestPractices": [
+            "List columns explicitly.",
+            "Parameterize values.",
+            "Verify destructive conditions first.",
+            "Use transactions for related writes."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "sql-joins",
+        "title": "Joins & Design",
+        "duration": "60 min",
+        "summary": "Combine related tables and apply normalization basics.",
+        "notes": [
+          "INNER JOIN returns matching rows from related tables.",
+          "LEFT JOIN keeps every row from the left table even when no match exists.",
+          "Normalization reduces unnecessary duplication and update anomalies."
+        ],
+        "video": {
+          "title": "SQL Joins Explained",
+          "url": "https://www.youtube.com/results?search_query=SQL+joins+normalization+tutorial+beginners"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "INNER JOIN",
+              "text": "INNER JOIN returns rows where the join condition matches on both tables. It is the right choice when a result only makes sense if both related records exist."
+            },
+            {
+              "title": "LEFT JOIN",
+              "text": "LEFT JOIN preserves every row from the left table and fills right-side columns with NULL when no match exists. This is useful for reports such as 'all users, including those with no quiz attempts'."
+            },
+            {
+              "title": "Joining several relationships",
+              "text": "Queries can join several tables, but developers must understand cardinality because one-to-many joins multiply rows. Aggregation with GROUP BY can then collapse those rows into one result per learner or course."
+            },
+            {
+              "title": "Schema design and normalization",
+              "text": "Good joins depend on sound relationships. Stable IDs, foreign keys and normalized tables make queries predictable. Denormalization can be useful in specialized performance cases, but it should be a measured trade-off rather than the default."
+            }
+          ],
+          "codeExample": {
+            "title": "Attempt count per learner",
+            "language": "sql",
+            "code": "SELECT u.id,\n       u.name,\n       COUNT(q.id) AS attempts\nFROM users AS u\nLEFT JOIN quiz_results AS q\n    ON q.user_id = u.id\nGROUP BY u.id, u.name\nORDER BY attempts DESC;",
+            "explanation": [
+              "LEFT JOIN keeps learners with zero attempts.",
+              "COUNT(q.id) counts only matching quiz rows.",
+              "GROUP BY returns one summary row per learner."
+            ]
+          },
+          "diagram": {
+            "title": "Join path",
+            "nodes": [
+              "users.id",
+              "enrollments.user_id",
+              "progress.user_id",
+              "quiz_results.user_id",
+              "Grouped report"
+            ],
+            "caption": "Joins follow shared keys; understanding those relationships is more reliable than joining by display text such as names."
+          },
+          "applications": [
+            "Report cards and admin summaries frequently combine learner identity with enrollments, progress and results."
+          ],
+          "commonMistakes": [
+            "Joining on names instead of IDs.",
+            "Putting right-table filters in WHERE after a LEFT JOIN and removing unmatched rows.",
+            "Ignoring row multiplication.",
+            "Duplicating entity data into relationship tables."
+          ],
+          "bestPractices": [
+            "Draw relationships before complex queries.",
+            "Use aliases.",
+            "Inspect raw rows before GROUP BY.",
+            "Index frequently joined/filter columns when needed."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "mysql-fundamentals-m4",
+        "title": "Grouping and Aggregate Queries",
+        "duration": "40 min",
+        "summary": "Practice grouping and aggregate queries through a worked example and a short verification exercise.",
+        "notes": [
+          "COUNT counts rows, SUM totals numeric values and AVG computes their average.",
+          "GROUP BY calculates aggregates separately for each group, such as course_id.",
+          "WHERE filters source rows before grouping, while HAVING filters the grouped results."
+        ],
+        "video": {
+          "title": "Grouping and Aggregate Queries tutorial",
+          "url": "https://www.youtube.com/results?search_query=Database%20%26%20MySQL%20Fundamentals%20Grouping%20and%20Aggregate%20Queries%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "COUNT counts rows, SUM totals numeric values and AVG computes their average."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "GROUP BY calculates aggregates separately for each group, such as course_id."
+            },
+            {
+              "title": "Checking the result",
+              "text": "WHERE filters source rows before grouping, while HAVING filters the grouped results."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "SELECT course_id, COUNT(*) AS learners\nFROM enrollments\nGROUP BY course_id\nHAVING COUNT(*) >= 5;\n-- Shows only courses with five or more enrollments.",
+            "explanation": [
+              "COUNT counts rows, SUM totals numeric values and AVG computes their average.",
+              "WHERE filters source rows before grouping, while HAVING filters the grouped results."
+            ]
+          },
+          "applications": [
+            "Apply grouping and aggregate queries when building and checking a small Database & MySQL Fundamentals lab exercise."
+          ],
+          "commonMistakes": [
+            "Using WHERE to filter an aggregate such as COUNT(*) fails because grouping has not happened yet."
+          ],
+          "bestPractices": [
+            "WHERE filters source rows before grouping, while HAVING filters the grouped results.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "COUNT counts rows, SUM totals numeric values and AVG computes their average.",
+            "GROUP BY calculates aggregates separately for each group, such as course_id.",
+            "WHERE filters source rows before grouping, while HAVING filters the grouped results."
+          ],
+          "extra": []
+        }
+      },
+      {
+        "id": "mysql-fundamentals-m5",
+        "title": "Transactions and Indexes",
+        "duration": "40 min",
+        "summary": "Practice transactions and indexes through a worked example and a short verification exercise.",
+        "notes": [
+          "A transaction groups related writes so COMMIT keeps them together and ROLLBACK undoes them together.",
+          "Indexes can speed up filtering and joins but consume space and add work to writes.",
+          "Use EXPLAIN to inspect access paths and choose indexes for real query patterns."
+        ],
+        "video": {
+          "title": "Transactions and Indexes tutorial",
+          "url": "https://www.youtube.com/results?search_query=Database%20%26%20MySQL%20Fundamentals%20Transactions%20and%20Indexes%20tutorial"
+        },
+        "guide": {
+          "concepts": [
+            {
+              "title": "Core idea",
+              "text": "A transaction groups related writes so COMMIT keeps them together and ROLLBACK undoes them together."
+            },
+            {
+              "title": "Putting it into practice",
+              "text": "Indexes can speed up filtering and joins but consume space and add work to writes."
+            },
+            {
+              "title": "Checking the result",
+              "text": "Use EXPLAIN to inspect access paths and choose indexes for real query patterns."
+            }
+          ],
+          "codeExample": {
+            "title": "Worked example",
+            "language": "text",
+            "code": "START TRANSACTION;\nUPDATE accounts SET balance = balance - 100 WHERE id = 1;\nUPDATE accounts SET balance = balance + 100 WHERE id = 2;\nCOMMIT;\n-- In application code, check both operations and ROLLBACK on failure.",
+            "explanation": [
+              "A transaction groups related writes so COMMIT keeps them together and ROLLBACK undoes them together.",
+              "Use EXPLAIN to inspect access paths and choose indexes for real query patterns."
+            ]
+          },
+          "applications": [
+            "Apply transactions and indexes when building and checking a small Database & MySQL Fundamentals lab exercise."
+          ],
+          "commonMistakes": [
+            "Committing the first half of a transfer before the second half can leave inconsistent balances."
+          ],
+          "bestPractices": [
+            "Use EXPLAIN to inspect access paths and choose indexes for real query patterns.",
+            "Try the worked example, change one input, and explain the resulting behavior."
+          ],
+          "recap": [
+            "A transaction groups related writes so COMMIT keeps them together and ROLLBACK undoes them together.",
+            "Indexes can speed up filtering and joins but consume space and add work to writes.",
+            "Use EXPLAIN to inspect access paths and choose indexes for real query patterns."
+          ],
+          "extra": []
+        }
+      }
+    ],
+    "quiz": [
+      {
+        "id": "sql-q1",
+        "moduleId": "sql-relational",
+        "difficulty": "easy",
+        "topic": "Tables",
+        "question": "A database table is made of:",
+        "options": [
+          "Rows and columns",
+          "Only functions",
+          "CSS selectors",
+          "Routes only"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "sql-q2",
+        "moduleId": "sql-relational",
+        "difficulty": "easy",
+        "topic": "Keys",
+        "question": "What does a primary key do?",
+        "options": [
+          "Uniquely identifies a row",
+          "Styles a table",
+          "Starts Node.js",
+          "Encrypts CSS"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "sql-q3",
+        "moduleId": "sql-crud",
+        "difficulty": "easy",
+        "topic": "SELECT",
+        "question": "Which command reads data from a table?",
+        "options": [
+          "SELECT",
+          "INSERT",
+          "DROP only",
+          "COMMIT only"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "sql-q4",
+        "moduleId": "sql-crud",
+        "difficulty": "medium",
+        "topic": "Filtering",
+        "question": "Which clause filters rows in a SELECT statement?",
+        "options": [
+          "WHERE",
+          "STYLE",
+          "FILTERBY only",
+          "CLASS"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "sql-q5",
+        "moduleId": "sql-crud",
+        "difficulty": "medium",
+        "topic": "Updating",
+        "question": "Which command changes existing rows?",
+        "options": [
+          "UPDATE",
+          "SELECT",
+          "CREATE DATABASE only",
+          "SHOW"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "sql-q6",
+        "moduleId": "sql-joins",
+        "difficulty": "medium",
+        "topic": "Joins",
+        "question": "Which join returns only rows that match in both joined tables?",
+        "options": [
+          "INNER JOIN",
+          "LEFT JOIN",
+          "CROSS JOIN only",
+          "NO JOIN"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "sql-q7",
+        "moduleId": "mysql-fundamentals-m4",
+        "difficulty": "medium",
+        "topic": "Grouping and Aggregate Queries",
+        "question": "Which clause filters groups to keep only courses with COUNT(*) >= 5?",
+        "options": [
+          "HAVING",
+          "ORDER BY",
+          "VALUES",
+          "LIMIT alone"
+        ],
+        "correct": 0,
+        "explanation": "COUNT counts rows, SUM totals numeric values and AVG computes their average. GROUP BY calculates aggregates separately for each group, such as course_id. WHERE filters source rows before grouping, while HAVING filters the grouped results."
+      },
+      {
+        "id": "sql-q8",
+        "moduleId": "sql-joins",
+        "difficulty": "hard",
+        "topic": "Join reasoning",
+        "question": "You need every learner even if they have no enrollment. Which join should start from learners?",
+        "options": [
+          "LEFT JOIN",
+          "INNER JOIN only",
+          "DROP JOIN",
+          "DELETE JOIN"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "sql-q9",
+        "moduleId": "sql-crud",
+        "difficulty": "hard",
+        "topic": "Security",
+        "question": "Why should backend code use parameterized SQL queries?",
+        "options": [
+          "To reduce SQL injection risk",
+          "To make CSS responsive",
+          "To create sessions",
+          "To compress images"
+        ],
+        "correct": 0
+      },
+      {
+        "id": "sql-q10",
+        "moduleId": "mysql-fundamentals-m5",
+        "difficulty": "hard",
+        "topic": "Transactions and Indexes",
+        "question": "A two-step transfer fails on the second write. What preserves consistency?",
+        "options": [
+          "Keep the first write permanently",
+          "Roll back both writes in one transaction",
+          "Ignore the second failure",
+          "Disable all constraints"
+        ],
+        "correct": 1,
+        "explanation": "A transaction groups related writes so COMMIT keeps them together and ROLLBACK undoes them together. Indexes can speed up filtering and joins but consume space and add work to writes. Use EXPLAIN to inspect access paths and choose indexes for real query patterns."
+      }
+    ]
+  }
+]

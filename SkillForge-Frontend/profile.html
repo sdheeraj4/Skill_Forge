@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+        <meta content="SkillForge personalized learning and skill development ecosystem." name="description"/>
+        <title>
+            Profile | SkillForge
+        </title>
+        <link href="assets/skillforge-logo.svg" rel="icon" type="image/svg+xml"/>
+        <link href="css/style.css" rel="stylesheet"/>
+        <script src="js/data.js">
+        </script>
+        <script src="js/api.js">
+        </script>
+        <script src="js/common.js">
+        </script>
+    </head>
+    <body class="app-page" data-page="profile" data-protected="true" data-title="Profile">
+        <aside class="sidebar" id="appSidebar">
+        </aside>
+        <main class="app-main">
+            <header class="app-topbar" id="appTopbar">
+            </header>
+            <div class="app-content">
+                <div class="profile-grid">
+                    <aside class="card profile-summary" id="profileSummary">
+                    </aside>
+                    <section class="card settings-card">
+                        <span class="eyebrow">
+                            Learning profile
+                        </span>
+                        <h1 style="font-size:2rem;letter-spacing:-.04em;margin:6px 0 22px">
+                            Personalize your path.
+                        </h1>
+                        <form id="profileForm">
+                            <div class="settings-section">
+                                <h3>
+                                    Personal information
+                                </h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            Name
+                                        </label>
+                                        <input class="form-control" name="name" required=""/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            Email
+                                        </label>
+                                        <input class="form-control" name="email" readonly="" type="email"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="settings-section">
+                                <h3>
+                                    Learning preferences
+                                </h3>
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Interests
+                                    </label>
+                                    <div class="choice-grid">
+                                        <div class="choice">
+                                            <input id="pref0" name="interests" type="checkbox" value="Web Development"/>
+                                            <label for="pref0">
+                                                Web Development
+                                            </label>
+                                        </div>
+                                        <div class="choice">
+                                            <input id="pref1" name="interests" type="checkbox" value="Frontend"/>
+                                            <label for="pref1">
+                                                Frontend
+                                            </label>
+                                        </div>
+                                        <div class="choice">
+                                            <input id="pref2" name="interests" type="checkbox" value="Backend"/>
+                                            <label for="pref2">
+                                                Backend
+                                            </label>
+                                        </div>
+                                        <div class="choice">
+                                            <input id="pref3" name="interests" type="checkbox" value="Programming"/>
+                                            <label for="pref3">
+                                                Programming
+                                            </label>
+                                        </div>
+                                        <div class="choice">
+                                            <input id="pref4" name="interests" type="checkbox" value="Database"/>
+                                            <label for="pref4">
+                                                Database
+                                            </label>
+                                        </div>
+                                        <div class="choice">
+                                            <input id="pref5" name="interests" type="checkbox" value="Developer Tools"/>
+                                            <label for="pref5">
+                                                Developer Tools
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Current level
+                                    </label>
+                                    <select class="form-select" name="level">
+                                        <option>
+                                            Beginner
+                                        </option>
+                                        <option>
+                                            Intermediate
+                                        </option>
+                                        <option>
+                                            Advanced
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Learning goal
+                                    </label>
+                                    <textarea class="form-textarea" name="goal"></textarea>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" type="submit">
+                                Save profile
+                            </button>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </main>
+        <script src="js/profile.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+        <meta content="SkillForge personalized learning and skill development ecosystem." name="description"/>
+        <title>
+            Explore Courses | SkillForge
+        </title>
+        <link href="assets/skillforge-logo.svg" rel="icon" type="image/svg+xml"/>
+        <link href="css/style.css" rel="stylesheet"/>
+        <script src="js/data.js">
+        </script>
+        <script src="js/api.js">
+        </script>
+        <script src="js/common.js">
+        </script>
+    </head>
+    <body data-page="courses">
+        <header class="site-header">
+            <nav class="guest-nav container">
+                <a class="brand" href="index.html">
+                    <img alt="SkillForge logo" src="assets/skillforge-logo.svg"/>
+                    <span>
+                        SkillForge
+                    </span>
+                </a>
+                <div class="guest-links">
+                    <a href="index.html">
+                        Home
+                    </a>
+                    <a href="courses.html">
+                        Explore Courses
+                    </a>
+                    <a href="#how-it-works">
+                        How it works
+                    </a>
+                </div>
+                <div class="guest-actions">
+                    <button aria-label="Toggle theme" class="icon-btn" data-theme-toggle="">
+                        ☼
+                    </button>
+                    <a class="btn btn-secondary btn-sm" href="login.html">
+                        Login
+                    </a>
+                    <a class="btn btn-primary btn-sm" href="register.html">
+                        Get started
+                    </a>
+                </div>
+                <button aria-label="Menu" class="icon-btn mobile-menu" id="guestMenuButton">
+                    ☰
+                </button>
+            </nav>
+        </header>
+        <main class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <span class="eyebrow">
+                            Explore
+                        </span>
+                        <h2>
+                            Choose what you want to build next.
+                        </h2>
+                    </div>
+                    <p>
+                        Every course follows the same focused structure: notes, examples, recommended lectures, module quizzes and tracked progress.
+                    </p>
+                </div>
+                <div class="filter-bar">
+                    <div class="search-box">
+                        <svg class="icon" viewbox="0 0 24 24">
+                            <circle cx="11" cy="11" r="7">
+                            </circle>
+                            <path d="m20 20-4-4">
+                            </path>
+                        </svg>
+                        <input class="form-control" id="courseSearch" placeholder="Search title, topic or skill..."/>
+                    </div>
+                    <select class="form-select" id="categoryFilter">
+                        <option value="">
+                            All categories
+                        </option>
+                    </select>
+                    <select class="form-select" id="levelFilter">
+                        <option value="">
+                            All levels
+                        </option>
+                    </select>
+                </div>
+                <div class="courses-grid" id="coursesGrid">
+                </div>
+            </div>
+        </main>
+        <footer class="site-footer">
+            <div class="container footer-row">
+                <a class="brand" href="index.html">
+                    <img alt="" src="assets/skillforge-logo.svg"/>
+                    <span>
+                        SkillForge
+                    </span>
+                </a>
+                <span>
+                    Learn → Practice → Measure → Grow
+                </span>
+            </div>
+        </footer>
+        <script src="js/courses.js">
+        </script>
+    </body>
+</html>

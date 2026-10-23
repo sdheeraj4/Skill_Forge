@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Create Course | SkillForge</title>
+    <link href="assets/skillforge-logo.svg" rel="icon" type="image/svg+xml">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/data.js" defer></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/common.js" defer></script>
+    <script src="js/create-course.js" defer></script>
+</head>
+<body class="app-page" data-page="create" data-protected="true" data-title="Create Course">
+    <aside class="sidebar" id="appSidebar"></aside>
+    <main class="app-main">
+        <header class="app-topbar" id="appTopbar"></header>
+        <div class="app-content">
+            <section class="card settings-card" style="max-width:760px;margin:auto">
+                <span class="eyebrow">Your learning path</span>
+                <h1>Create a course</h1>
+                <p class="muted">Choose what you want to learn. Your private course includes 5–10 modules and a 10-question assessment.</p>
+                <form id="createCourseForm">
+                    <fieldset id="generationFields" style="border:0;padding:0;margin:0;min-width:0">
+                        <div class="form-group">
+                            <label class="form-label" for="topic">Topic</label>
+                            <input class="form-control" id="topic" name="topic" required minlength="2" maxlength="100" placeholder="Java Programming">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="level">Learning level</label>
+                            <select class="form-select" id="level" name="level" required>
+                                <option>Beginner</option><option>Intermediate</option><option>Advanced</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="learningGoal">Learning goal</label>
+                            <textarea class="form-textarea" id="learningGoal" name="learningGoal" required minlength="10" maxlength="600" rows="3" placeholder="Learn Java for college programs and small applications."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="moduleCount">Number of modules</label>
+                            <select class="form-select" id="moduleCount" name="moduleCount" required>
+                                <option>5</option><option selected>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" type="submit" id="generateButton">Generate course</button>
+                    </fieldset>
+                    <p id="generationStatus" role="status" aria-live="polite"></p>
+                </form>
+                <p class="muted" style="font-size:.85rem">If Gemini is unavailable, enabled offline templates support Java, Node.js, HTML and CSS, JavaScript, Python and MySQL. Templates use a fixed foundations syllabus with guided practice and are labeled clearly. Enter learning preferences only; avoid personal information.</p>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

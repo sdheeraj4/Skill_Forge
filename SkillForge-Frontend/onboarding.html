@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+        <meta content="SkillForge personalized learning and skill development ecosystem." name="description"/>
+        <title>
+            Learning Profile | SkillForge
+        </title>
+        <link href="assets/skillforge-logo.svg" rel="icon" type="image/svg+xml"/>
+        <link href="css/style.css" rel="stylesheet"/>
+        <script src="js/data.js">
+        </script>
+        <script src="js/api.js">
+        </script>
+        <script src="js/common.js">
+        </script>
+    </head>
+    <body data-protected="true">
+        <main class="auth-layout">
+            <section class="auth-showcase">
+                <a class="brand" href="index.html">
+                    <img alt="" src="assets/skillforge-logo.svg"/>
+                    <span>
+                        SkillForge
+                    </span>
+                </a>
+                <div class="auth-message">
+                    <span class="eyebrow" style="color:#9e96ff">
+                        PERSONALIZE
+                    </span>
+                    <h1>
+                        Tell SkillForge where you want to grow.
+                    </h1>
+                    <p>
+                        This information drives the first version of your course recommendations. You can change it anytime from Profile.
+                    </p>
+                </div>
+                <div class="auth-mini-card">
+                    <strong>
+                        No heavy AI required.
+                    </strong>
+                    <p style="margin:6px 0 0;color:#c9cbea">
+                        The current frontend uses transparent rule-based recommendations. The backend can later calculate them from real stored data.
+                    </p>
+                </div>
+            </section>
+            <section class="auth-panel">
+                <div class="auth-card">
+                    <span class="eyebrow">
+                        Step 2 of 2
+                    </span>
+                    <h2>
+                        Create your learning profile.
+                    </h2>
+                    <p>
+                        Select interests, your current level and a concrete learning goal.
+                    </p>
+                    <form id="onboardingForm">
+                        <div class="form-group">
+                            <label class="form-label">
+                                Interests
+                            </label>
+                            <div class="choice-grid">
+                                <div class="choice">
+                                    <input id="int0" name="interests" type="checkbox" value="Web Development"/>
+                                    <label for="int0">
+                                        Web Development
+                                    </label>
+                                </div>
+                                <div class="choice">
+                                    <input id="int1" name="interests" type="checkbox" value="Frontend"/>
+                                    <label for="int1">
+                                        Frontend
+                                    </label>
+                                </div>
+                                <div class="choice">
+                                    <input id="int2" name="interests" type="checkbox" value="Backend"/>
+                                    <label for="int2">
+                                        Backend
+                                    </label>
+                                </div>
+                                <div class="choice">
+                                    <input id="int3" name="interests" type="checkbox" value="Programming"/>
+                                    <label for="int3">
+                                        Programming
+                                    </label>
+                                </div>
+                                <div class="choice">
+                                    <input id="int4" name="interests" type="checkbox" value="Database"/>
+                                    <label for="int4">
+                                        Database
+                                    </label>
+                                </div>
+                                <div class="choice">
+                                    <input id="int5" name="interests" type="checkbox" value="Developer Tools"/>
+                                    <label for="int5">
+                                        Developer Tools
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="level">
+                                    Current level
+                                </label>
+                                <select class="form-select" id="level" name="level">
+                                    <option>
+                                        Beginner
+                                    </option>
+                                    <option>
+                                        Intermediate
+                                    </option>
+                                    <option>
+                                        Advanced
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="goal">
+                                Learning goal
+                            </label>
+                            <textarea class="form-textarea" id="goal" name="goal" placeholder="Example: Become job-ready in full-stack development"></textarea>
+                        </div>
+                        <button class="btn btn-primary" style="width:100%" type="submit">
+                            Build my dashboard →
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+        <script src="js/auth.js">
+        </script>
+    </body>
+</html>
