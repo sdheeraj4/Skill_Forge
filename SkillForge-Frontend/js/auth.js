@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginForm");
+
     if (loginForm) {
         loginForm.addEventListener("submit", async (event) => {
             event.preventDefault();
+
             const button = loginForm.querySelector('button[type="submit"]');
             const email = loginForm.email.value.trim().toLowerCase();
             const password = loginForm.password.value;
@@ -13,8 +15,45 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 await SkillForgeAPI.login(email, password);
                 await sfRefreshSessionUser();
-                const next = new URLSearchParams(location.search).get("next");
-                location.href = next || "dashboard.html";
+
+                const requestedNext =
+                    new URLSearchParams(location.search).get("next");
+
+                const allowedPages = new Set([
+                    "dashboard.html",
+                    "courses.html",
+                    "course.html",
+                    "my-learning.html",
+                    "learn.html",
+                    "create-course.html",
+                    "skills.html",
+                    "progress.html",
+                    "profile.html",
+                    "quiz.html",
+                    "notes.html",
+                    "onboarding.html"
+                ]);
+
+                let destination = "dashboard.html";
+
+                try {
+                    const target = new URL(
+                        requestedNext || destination,
+                        window.location.origin
+                    );
+                    const page = target.pathname.replace(/^\/+/, "");
+
+                    if (
+                        target.origin === window.location.origin &&
+                        allowedPages.has(page)
+                    ) {
+                        destination = `${page}${target.search}${target.hash}`;
+                    }
+                } catch {
+                    // Keep the safe default destination.
+                }
+
+                window.location.replace(destination);
             } catch (error) {
                 sfToast(error.message, "error");
             } finally {
@@ -25,9 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const registerForm = document.getElementById("registerForm");
+
     if (registerForm) {
         registerForm.addEventListener("submit", async (event) => {
             event.preventDefault();
+
             const formData = new FormData(registerForm);
             const name = String(formData.get("name") || "").trim();
             const email = String(formData.get("email") || "").trim().toLowerCase();
@@ -39,14 +80,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 sfToast("Enter your full name.", "error");
                 return;
             }
+
             if (!/^\S+@\S+\.\S+$/.test(email)) {
                 sfToast("Enter a valid email address.", "error");
                 return;
             }
+
             if (password.length < 8) {
                 sfToast("Password must be at least 8 characters.", "error");
                 return;
             }
+
             if (password !== confirm) {
                 sfToast("Passwords do not match.", "error");
                 return;
@@ -64,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     skillLevel: "Beginner",
                     learningGoal: ""
                 });
+
                 await sfRefreshSessionUser();
                 location.href = "onboarding.html";
             } catch (error) {
@@ -76,18 +121,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const onboardingForm = document.getElementById("onboardingForm");
+
     if (onboardingForm) {
         (async () => {
             const user = await sfRequireAuth();
+
             if (!user) {
                 return;
             }
 
             onboardingForm.level.value = user.skillLevel || "Beginner";
             onboardingForm.goal.value = user.learningGoal || "";
+
             (user.interests || []).forEach((interest) => {
-                const checkbox = [...onboardingForm.querySelectorAll('[name="interests"]')]
-                    .find((item) => item.value === interest);
+                const checkbox = [
+                    ...onboardingForm.querySelectorAll('[name="interests"]')
+                ].find((item) => item.value === interest);
+
                 if (checkbox) {
                     checkbox.checked = true;
                 }
@@ -96,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         onboardingForm.addEventListener("submit", async (event) => {
             event.preventDefault();
+
             const formData = new FormData(onboardingForm);
             const interests = formData.getAll("interests");
             const button = onboardingForm.querySelector('button[type="submit"]');
@@ -114,8 +165,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     skillLevel: formData.get("level"),
                     learningGoal: String(formData.get("goal") || "").trim()
                 });
+
                 await sfRefreshSessionUser();
                 sfToast("Learning profile created.", "success");
+
                 setTimeout(() => {
                     location.href = "dashboard.html";
                 }, 350);
