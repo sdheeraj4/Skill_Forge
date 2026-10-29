@@ -1,0 +1,7 @@
+.git
+.work
+**/node_modules
+**/.env
+**/.env.*
+!**/.env.example
+*.zip

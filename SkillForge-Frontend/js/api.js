@@ -1,4 +1,9 @@
-const API_BASE_URL = "http://127.0.0.1:5000/api";
+const isLocalSeparateFrontend =
+    (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") &&
+    window.location.port === "3000";
+const API_BASE_URL = isLocalSeparateFrontend
+    ? "http://127.0.0.1:5000/api"
+    : "/api";
 
 class SkillForgeApiError extends Error {
     constructor(message, status = 0, data = null) {
