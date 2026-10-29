@@ -1,9 +1,11 @@
 const isLocalSeparateFrontend =
-    (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") &&
+    (window.location.hostname === "127.0.0.1" ||
+        window.location.hostname === "localhost") &&
     window.location.port === "3000";
+
 const API_BASE_URL = isLocalSeparateFrontend
     ? "http://127.0.0.1:5000/api"
-    : "/api";
+    : "https://skill-forge-xi2l.onrender.com/api";
 
 class SkillForgeApiError extends Error {
     constructor(message, status = 0, data = null) {
@@ -30,11 +32,12 @@ async function apiRequest(endpoint, options = {}) {
     }
 
     let response;
+
     try {
         response = await fetch(`${API_BASE_URL}${endpoint}`, config);
     } catch (error) {
         throw new SkillForgeApiError(
-            "Cannot reach the SkillForge backend. Make sure npm start is running on port 5000.",
+            "Cannot reach the SkillForge backend. Make sure it is running.",
             0,
             null
         );
@@ -54,10 +57,15 @@ async function apiRequest(endpoint, options = {}) {
 }
 
 window.SkillForgeApiError = SkillForgeApiError;
+
 window.SkillForgeAPI = {
     createCourse(input) {
-        return apiRequest("/generated-courses", { method: "POST", body: JSON.stringify(input) });
+        return apiRequest("/generated-courses", {
+            method: "POST",
+            body: JSON.stringify(input)
+        });
     },
+
     health() {
         return apiRequest("/health");
     },

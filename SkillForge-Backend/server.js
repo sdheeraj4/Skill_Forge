@@ -3,7 +3,6 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
-const path = require("node:path");
 const db = require("./db");
 
 const authRoutes = require("./routes/auth");
@@ -13,14 +12,17 @@ const dashboardRoutes = require("./routes/dashboard");
 
 const app = express();
 const PORT = Number(process.env.PORT || 5000);
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "http://127.0.0.1:3000";
+const FRONTEND_ORIGIN =
+    process.env.FRONTEND_ORIGIN || "http://127.0.0.1:3000";
 const isProduction = process.env.NODE_ENV === "production";
 
 if (isProduction && !process.env.SESSION_SECRET) {
     throw new Error("SESSION_SECRET must be set in production.");
 }
 
-if (isProduction) app.set("trust proxy", 1);
+if (isProduction) {
+    app.set("trust proxy", 1);
+}
 
 app.use(cors({
     origin: FRONTEND_ORIGIN,
@@ -36,23 +38,26 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        sameSite: "lax",
+        sameSite: isProduction ? "none" : "lax",
         secure: isProduction,
         maxAge: 24 * 60 * 60 * 1000
     }
 }));
 
-// In production the same Node service serves both the UI and API, keeping
-// session cookies on one HTTPS origin. Local development can still use the
-// separate frontend server from `npm run frontend`.
-app.use(express.static(path.join(__dirname, "../SkillForge-Frontend")));
-
 app.get("/api/health", async (req, res) => {
     try {
         await db.query("SELECT 1");
-        res.json({ api: "ok", database: "connected", project: "SkillForge" });
+        res.json({
+            api: "ok",
+            database: "connected",
+            project: "SkillForge"
+        });
     } catch (error) {
-        res.status(503).json({ api: "ok", database: "not connected", message: "Database is not connected." });
+        res.status(503).json({
+            api: "ok",
+            database: "not connected",
+            message: "Database is not connected."
+        });
     }
 });
 
@@ -69,14 +74,17 @@ app.use((req, res) => {
 app.use((error, req, res, next) => {
     console.error("[API error]", error.status || 500);
     const status = error.status || 500;
+
     res.status(status).json({
         message: status === 500 ? "Unexpected server error." : error.message
     });
 });
 
-if (require.main === module) app.listen(PORT, "0.0.0.0", () => {
-    console.log(`SkillForge backend running at http://127.0.0.1:${PORT}`);
-    console.log(`Frontend origin allowed: ${FRONTEND_ORIGIN}`);
-});
+if (require.main === module) {
+    app.listen(PORT, "0.0.0.0", () => {
+        console.log(`SkillForge API running on port ${PORT}`);
+        console.log(`Allowed frontend origin: ${FRONTEND_ORIGIN}`);
+    });
+}
 
 module.exports = app;
